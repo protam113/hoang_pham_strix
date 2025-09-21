@@ -223,18 +223,22 @@ export default function NavBar({
 
             {/* Right section - Contact Button */}
             <div className="hidden md:flex items-center gap-2">
-              <Link
-                href="/contact-us"
+              <a
+                href="https://drive.google.com/file/d/1eJqMIYqvkneVRR1o7uMBul9dvbgXzV_B/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="border bg-main text-lg  px-4 py-1 rounded-full text-white hover:bg-main-600 hover:text-white transition"
               >
                 Get My CV
-              </Link>
-              <Link
-                href="/contact-us"
+              </a>
+              <a
+                href="https://drive.google.com/file/d/1eJqMIYqvkneVRR1o7uMBul9dvbgXzV_B/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-8 h-8 bg-main text-white rounded-full flex items-center justify-center hover:scale-110 transition"
               >
                 <ArrowRight size={16} />
-              </Link>
+              </a>
             </div>
 
             {/* Mobile menu button */}
@@ -291,7 +295,7 @@ export default function NavBar({
                     ${
                       isActive
                         ? 'text-white font-semibold scale-105 shadow-lg'
-                        : 'text-black hover:text-white'
+                        : 'text-black hover:text-main'
                     }
                   `}
                   style={{
@@ -310,23 +314,29 @@ export default function NavBar({
 
           {/* Mobile contact button */}
           <div className="mt-12 flex items-center gap-2">
-            <Link
-              href="/contact-us"
+            <a
+              href="https://drive.google.com/file/d/1eJqMIYqvkneVRR1o7uMBul9dvbgXzV_B/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
               className="border border-black px-4 py-2 rounded-full text-sm"
               onClick={toggleMobileMenu}
             >
               Get My CV
-            </Link>
-            <Link
-              href="/contact-us"
-              className="w-10 h-10 bg-lime-400 text-black rounded-full flex items-center justify-center"
+            </a>
+
+            <a
+              href="https://drive.google.com/file/d/1eJqMIYqvkneVRR1o7uMBul9dvbgXzV_B/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-main text-black rounded-full flex items-center justify-center"
               onClick={toggleMobileMenu}
             >
               <ArrowRight size={18} />
-            </Link>
+            </a>
           </div>
         </div>
       )}
     </>
   );
 }
+//

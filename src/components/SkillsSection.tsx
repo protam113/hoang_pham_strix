@@ -5,18 +5,54 @@ import { Code } from 'lucide-react';
 import { useRef } from 'react';
 import { Container } from './layout/container';
 
+const skills = {
+  frontend: [
+    { name: 'React', level: 90 },
+    { name: 'Next.js', level: 85 },
+    { name: 'TypeScript', level: 85 },
+    { name: 'JavaScript (ES6+)', level: 85 },
+    { name: 'CSS/Tailwind', level: 85 },
+    { name: 'UI/UX Design (Figma)', level: 80 },
+    { name: 'Testing (unit/e2e)', level: 60 },
+  ],
+  backend: [
+    { name: 'Node.js', level: 70 },
+    { name: 'NestJS', level: 75 },
+    { name: 'Express.js', level: 70 },
+    { name: 'RESTful API', level: 80 },
+    { name: 'GraphQL (basic)', level: 60 },
+    { name: 'Caching / Performance', level: 70 },
+    { name: 'MongoDB/ PostgreSQL / MySQL / MariaDB', level: 70 },
+    { name: 'Redis', level: 65 },
+  ],
+  workflow: [
+    { name: 'Git/GitHub/GitLab', level: 80 },
+    { name: 'Agile/Scrum Workflow', level: 65 },
+    { name: 'CI/CD (basic)', level: 60 },
+    { name: 'Docker + Deployment', level: 75 },
+  ],
+};
+
+function SkillBar({ name, level }: { name: string; level: number }) {
+  return (
+    <div className="mb-3">
+      <div className="flex justify-between text-sm text-white mb-1">
+        <span>{name}</span>
+        <span>{level}%</span>
+      </div>
+      <div className="w-full bg-white/20 rounded-full h-2">
+        <div
+          className="bg-blue-500 h-2 rounded-full transition-all duration-500"
+          style={{ width: `${level}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
 export function SkillsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.1 });
-
-  const skills = [
-    { name: 'React', level: 85 },
-    { name: 'Next.js', level: 80 },
-    { name: 'TypeScript', level: 80 },
-    { name: 'Node.js', level: 70 },
-    { name: 'CSS/Tailwind', level: 80 },
-    { name: 'UI/UX Design', level: 80 },
-  ];
 
   return (
     <section className="py-24 md:py-32 bg-main" ref={ref}>
@@ -38,83 +74,83 @@ export function SkillsSection() {
               focusing on modern web technologies and best practices.
             </p>
           </motion.div>
-          <div className="grid gap-8 md:grid-cols-2">
-            <motion.div
-              className="space-y-6"
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              {skills.map((skill, index) => (
-                <div key={index} className="space-y-2">
-                  <div className="flex justify-between">
-                    <h3 className="font-medium text-white">{skill.name}</h3>
-                    <span className="text-white">{skill.level}%</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-xl font-bold text-white mb-4">Frontend</h3>
+              {skills.frontend.map((s) => (
+                <SkillBar key={s.name} {...s} />
+              ))}
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold text-white mb-4">
+                Backend & DevOps
+              </h3>
+              {skills.backend.map((s) => (
+                <SkillBar key={s.name} {...s} />
+              ))}
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold text-white mb-4">Workflow</h3>
+              {skills.workflow.map((s) => (
+                <SkillBar key={s.name} {...s} />
+              ))}
+            </div>
+          </div>
+
+          <motion.div
+            className="space-y-6 mt-8"
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <Card>
+              <CardHeader>
+                <CardTitle>Development Approach</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="rounded-full p-2 bg-primary/10 text-primary">
+                    <Code className="h-5 w-5" />
                   </div>
-                  <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
-                    <motion.div
-                      className="h-full bg-main-600"
-                      initial={{ width: 0 }}
-                      animate={
-                        isInView ? { width: `${skill.level}%` } : { width: 0 }
-                      }
-                      transition={{ duration: 1, delay: 0.3 + index * 0.1 }}
-                    />
+                  <div>
+                    <h4 className="font-medium">Clean, Maintainable Code</h4>
+                    <p className="text-sm text-muted-foreground">
+                      I write well-structured, documented code following best
+                      practices and design patterns.
+                    </p>
                   </div>
                 </div>
-              ))}
-            </motion.div>
-            <motion.div
-              className="space-y-6"
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <Card>
-                <CardHeader>
-                  <CardTitle>Development Approach</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-start gap-4">
-                    <div className="rounded-full p-2 bg-primary/10 text-primary">
-                      <Code className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium">Clean, Maintainable Code</h4>
-                      <p className="text-sm text-muted-foreground">
-                        I write well-structured, documented code following best
-                        practices and design patterns.
-                      </p>
-                    </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="rounded-full p-2 bg-primary/10 text-primary">
+                    <Code className="h-5 w-5" />
                   </div>
-                  <div className="flex items-start gap-4">
-                    <div className="rounded-full p-2 bg-primary/10 text-primary">
-                      <Code className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium">Responsive Design</h4>
-                      <p className="text-sm text-muted-foreground">
-                        All my projects are fully responsive, ensuring a great
-                        user experience on any device.
-                      </p>
-                    </div>
+                  <div>
+                    <h4 className="font-medium">Performance Optimization</h4>
+                    <p className="text-sm text-muted-foreground">
+                      I focus on creating fast, efficient applications with
+                      optimized assets and code splitting.
+                    </p>
                   </div>
-                  <div className="flex items-start gap-4">
-                    <div className="rounded-full p-2 bg-primary/10 text-primary">
-                      <Code className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium">Performance Optimization</h4>
-                      <p className="text-sm text-muted-foreground">
-                        I focus on creating fast, efficient applications with
-                        optimized assets and code splitting.
-                      </p>
-                    </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="rounded-full p-2 bg-primary/10 text-primary">
+                    <Code className="h-5 w-5" />
                   </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
+                  <div>
+                    <h4 className="font-medium">Responsive Design</h4>
+                    <p className="text-sm text-muted-foreground">
+                      All my projects are fully responsive, ensuring a great
+                      user experience on any device.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </Container>
     </section>

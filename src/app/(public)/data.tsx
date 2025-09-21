@@ -8,10 +8,12 @@ import NavBar from '@/components/layout/nav';
 import { ProjectsSection } from '@/components/ProjectsSection';
 import { SkillsSection } from '@/components/SkillsSection';
 import TextMarquee from '@/components/TitleMarquee';
+import { WorkEx } from '@/components/workEx';
 export const MyPage = () => {
   const sections = [
     { id: 'main', label: 'Introduce', color: '#013162' },
     { id: 'about', label: 'Who am i?', color: '#013162' },
+    { id: 'experience', label: 'Work Experience', color: '#013162' },
     { id: 'projects', label: 'Projects', color: '#013162' },
     { id: 'skills', label: 'Skills', color: '#013162' },
     { id: 'contact', label: "Let's Connect ", color: '#013162' },
@@ -26,6 +28,10 @@ export const MyPage = () => {
 
         <section id="about">
           <AboutSection />
+        </section>
+
+        <section id="experience">
+          <WorkEx />
         </section>
 
         <section id="projects">
