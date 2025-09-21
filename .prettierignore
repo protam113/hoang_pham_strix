@@ -1,0 +1,18 @@
+# Ignore node_modules vì không cần format
+node_modules/
+
+# Ignore thư mục build của Next.js
+.next/
+
+# Nếu dùng `next export`, ignore thư mục `out`
+out/
+
+# Ignore lockfiles (tùy chọn)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Ignore các file cấu hình & cache
+.npm/
+.vercel/
+.dockerignore
