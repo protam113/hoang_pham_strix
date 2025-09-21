@@ -8,6 +8,7 @@ import { Facebook, Github, Linkedin, Mail } from 'lucide-react';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import type { z } from 'zod';
 import { Container } from './layout/container';
 import SectionHeader from './SectionHeader';
@@ -66,7 +67,7 @@ export function Monitor() {
 }
 
 export function Contact() {
-  const formRef = useRef(null);
+  const formRef = useRef<HTMLFormElement | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof contactSentFormSchema>>({
@@ -82,37 +83,40 @@ export function Contact() {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.4 });
 
-  const handleSentContact = (values: z.infer<typeof contactSentFormSchema>) => {
+  const handleSentContact = async (
+    values: z.infer<typeof contactSentFormSchema>
+  ) => {
     setIsLoading(true);
 
-    const contactData: CreateContactItem = {
-      name: values.name,
-      email: values.email,
-      phone_number: values.phone_number,
-      message: values.message,
-    };
+    try {
+      const formData = new FormData();
+      formData.append('name', values.name);
+      formData.append('email', values.email);
+      formData.append('phone_number', values.phone_number);
+      formData.append('message', values.message);
+      formData.append('access_key', '9105b3c5-24a5-40eb-bffd-d4fb02f80bec');
 
-    // createContact(contactData, {
-    //   onSuccess: () => {
-    //     form.reset({
-    //       name: '',
-    //       email: '',
-    //       phone_number: '',
-    //       message: '',
-    //     });
-    //     setIsLoading(false);
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
 
-    //     form.clearErrors();
-    //   },
-    //   onError: (error: any) => {
-    //     form.setError('root', {
-    //       type: 'manual',
-    //       message: error.message || 'Error',
-    //     });
-    //     setIsLoading(false);
-    //   },
-    // });
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success('Form Submitted Successfully');
+        form.reset(); // reset react-hook-form
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast.error('Error submitting form. Please try again later.');
+    } finally {
+      setIsLoading(false);
+    }
   };
+
   return (
     <div
       ref={containerRef}
