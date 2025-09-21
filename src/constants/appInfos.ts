@@ -1,16 +1,48 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 export const appInfo = {
-  logo: '/logo.svg', //web logo
-  title: 'App Name', //app name
-  description: 'app description', //app description
-  domain: 'app domain', //app domain
-  ogImage: '/og_logo.svg', //og image
+  logo: '/icons/Og_Logo.svg',
+  title: 'Hoang Pham',
+  description: 'app description',
+  domain: 'https://vietstrix.com',
+  ogImage: '/icons/Og_Logo.svg',
   themeColor: '#ffffff',
   keywords: [
-    'keywords', //keywords
-    // ...
+    'web development',
+    'website',
+    'web design',
+    'frontend development',
+    'backend development',
+    'full-stack development',
+    'web application',
+    'responsive design',
+    'e-commerce development',
+    'CMS development',
+    'SEO optimization',
+    'web solutions',
+    'thiết kế website',
+    'phát triển web',
+    'dịch vụ web',
+    'thiết kế web chuyên nghiệp',
+    'xây dựng website',
+    'phát triển ứng dụng web',
+    'thiết kế web responsive',
+    'phát triển thương mại điện tử',
+    'tối ưu SEO',
+    'dịch vụ web toàn diện',
+    'lập trình website',
+    'giải pháp web',
   ],
+};
+
+export const siteBaseUrl = 'https://vietstrix.com';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: appInfo.themeColor,
 };
 
 export const metadata: Metadata = {
@@ -19,14 +51,11 @@ export const metadata: Metadata = {
   keywords: appInfo.keywords,
   applicationName: appInfo.title,
   generator: 'Next.js',
-
   icons: {
-    icon: appInfo.logo,
-    apple: appInfo.logo,
+    icon: '/favicon.ico',
+    apple: '/favicon.ico',
     shortcut: appInfo.logo,
   },
-  themeColor: appInfo.themeColor,
-
   openGraph: {
     type: 'website',
     title: appInfo.title,
@@ -43,23 +72,14 @@ export const metadata: Metadata = {
     ],
     locale: 'vi_VN',
   },
-
   twitter: {
     card: 'summary_large_image',
     title: appInfo.title,
     description: appInfo.description,
     images: [`${appInfo.domain}${appInfo.ogImage}`],
-    creator: '@ugc_creator',
-    site: '@ugc_creator',
+    creator: '@vietstrix',
+    site: '@vietstrix',
   },
-
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
-
   alternates: {
     canonical: appInfo.domain,
     languages: {
@@ -67,7 +87,6 @@ export const metadata: Metadata = {
       'vi-VN': `${appInfo.domain}`,
     },
   },
-
   robots: {
     index: true,
     follow: true,
@@ -78,18 +97,15 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-
   verification: {
     google: 'verification_token',
     yandex: 'verification_token',
   },
-
-  category: 'Marketing Agency',
-  creator: '@ugc_creator',
-  publisher: 'UGC Creator',
+  category: 'Website Development',
+  creator: '@vietstrix',
+  publisher: 'Vietstrix',
 };
 
-// Function to generate metadata for child pages
 export function PageMetadata(
   pageTitle: string,
   pageDescription?: string
