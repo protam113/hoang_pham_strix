@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowUp, Facebook } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { FaLinkedin } from 'react-icons/fa';
 
@@ -23,17 +23,7 @@ const ScrollToTopButton: React.FC = () => {
   return (
     <div className="fixed bottom-6 right-6 flex flex-col items-center gap-3 z-50">
       <a
-        href="/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-12 h-12 bg-[#1877F2] text-white rounded-full shadow-md hover:bg-[#145DBF] flex items-center justify-center transition duration-300"
-        aria-label="Facebook Messenger"
-      >
-        <Facebook size={20} />
-      </a>
-
-      <a
-        href="/"
+        href="https://www.linkedin.com/in/hoangpham-strix/"
         target="_blank"
         rel="noopener noreferrer"
         className="w-12 h-12 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 flex items-center justify-center transition duration-300"
