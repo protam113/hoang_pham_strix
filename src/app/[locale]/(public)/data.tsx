@@ -1,6 +1,7 @@
 'use client';
 
 import { AboutSection } from '@/components/AboutSection';
+import AnimationComponents from '@/components/Animaton';
 import { ContactForm } from '@/components/ContactForm';
 import { Introduce } from '@/components/introduce';
 import Footer from '@/components/layout/footer';
@@ -41,6 +42,7 @@ export const MyPage = () => {
 
         <section id="skills">
           <SkillsSection />
+          <AnimationComponents />
         </section>
 
         <section id="contact">
