@@ -6,6 +6,7 @@ import { ArrowRight, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import LangButton from '../button/language.button';
 
 export default function NavBar({
   sections,
@@ -220,7 +221,7 @@ export default function NavBar({
                 );
               })}
             </div>
-
+            <LangButton />
             {/* Right section - Contact Button */}
             <div className="hidden md:flex items-center gap-2">
               <a
@@ -261,7 +262,7 @@ export default function NavBar({
             {/* Logo */}
             <div className="flex items-center gap-2">
               <div className="w-8 h-8  rounded-full flex items-center justify-center">
-                <Image src="/logo.png" alt="Logo" width={30} height={30} />
+                <Image src="/ava.jpeg" alt="Logo" width={30} height={30} />
               </div>
               <div className="flex flex-col">
                 <span className="text-xs leading-none font-semibold uppercase">

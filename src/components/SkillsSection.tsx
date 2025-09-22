@@ -2,6 +2,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { motion, useInView } from 'framer-motion';
 import { Code } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useRef } from 'react';
 import { Container } from './layout/container';
 
@@ -53,6 +54,7 @@ function SkillBar({ name, level }: { name: string; level: number }) {
 export function SkillsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.1 });
+  const t = useTranslations('Page');
 
   return (
     <section className="py-24 md:py-32 bg-main" ref={ref}>
@@ -66,12 +68,11 @@ export function SkillsSection() {
           >
             <Badge className="mb-4">My Skills</Badge>
             <h2 className="text-3xl font-bold text-white tracking-tighter sm:text-4xl md:text-5xl">
-              Technical Expertise
+              {t('Technical.title')}
             </h2>
             <div className="w-12 h-1 bg-primary my-4" />
             <p className="max-w-[700px] text-gray-200 -foreground">
-              I&apos;ve developed a diverse set of skills throughout my career,
-              focusing on modern web technologies and best practices.
+              {t('Technical.content')}
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -107,7 +108,7 @@ export function SkillsSection() {
           >
             <Card>
               <CardHeader>
-                <CardTitle>Development Approach</CardTitle>
+                <CardTitle> {t('Technical.development')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-start gap-4">
@@ -115,10 +116,9 @@ export function SkillsSection() {
                     <Code className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-medium">Clean, Maintainable Code</h4>
+                    <h4 className="font-medium">{t('Technical.t1.a')}</h4>
                     <p className="text-sm text-muted-foreground">
-                      I write well-structured, documented code following best
-                      practices and design patterns.
+                      {t('Technical.t1.q')}
                     </p>
                   </div>
                 </div>
@@ -128,10 +128,9 @@ export function SkillsSection() {
                     <Code className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-medium">Performance Optimization</h4>
+                    <h4 className="font-medium">{t('Technical.t2.a')}</h4>
                     <p className="text-sm text-muted-foreground">
-                      I focus on creating fast, efficient applications with
-                      optimized assets and code splitting.
+                      {t('Technical.t2.q')}
                     </p>
                   </div>
                 </div>
@@ -141,10 +140,9 @@ export function SkillsSection() {
                     <Code className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-medium">Responsive Design</h4>
+                    <h4 className="font-medium">{t('Technical.t3.a')}</h4>
                     <p className="text-sm text-muted-foreground">
-                      All my projects are fully responsive, ensuring a great
-                      user experience on any device.
+                      {t('Technical.t3.q')}
                     </p>
                   </div>
                 </div>

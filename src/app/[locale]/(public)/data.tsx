@@ -9,6 +9,7 @@ import { ProjectsSection } from '@/components/ProjectsSection';
 import { SkillsSection } from '@/components/SkillsSection';
 import TextMarquee from '@/components/TitleMarquee';
 import { WorkEx } from '@/components/workEx';
+
 export const MyPage = () => {
   const sections = [
     { id: 'main', label: 'Introduce', color: '#013162' },

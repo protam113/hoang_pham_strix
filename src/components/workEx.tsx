@@ -1,6 +1,7 @@
 'use client';
 
 import { ArrowUpRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 import { Container } from './layout/container';
 
@@ -23,38 +24,35 @@ export const WorkEx = () => {
 
     return () => observer.disconnect();
   }, []);
+  const t = useTranslations('Page');
 
   const workExperiences = [
     {
       title: 'Hội Dòng Anh Em Đức Maria',
       roles: ['Leader', 'UX/UI', 'Frontend', 'Backend'],
       period: 'Aug 2024 – Oct 2024',
-      description:
-        'Developed an informational and content management website for the organization. Handled everything from UI/UX design to backend implementation, ensuring performance optimization and easy content management.',
+      description: t('Experience.p1'),
       tech: ['React', 'Next.js', 'NestJS', 'PostgreSQL', 'Docker'],
     },
     {
       title: 'Hust4l Blog (Agency Project)',
       roles: ['Fullstack Developer', 'UI/UX Designer'],
       period: '2024',
-      description:
-        'Built a modern blog system for an agency project. Focused on delivering a sleek UI, responsive layout, and SEO optimization for better online presence.',
+      description: t('Experience.p2'),
       tech: ['Next.js', 'TailwindCSS', 'TypeScript'],
     },
     {
       title: 'Unien Company Website',
       roles: ['Leader', 'UX/UI', 'Frontend'],
       period: '2024',
-      description:
-        'Developed the official website for Unien company. Ensured a professional corporate image, responsive design, and optimized performance across devices.',
+      description: t('Experience.p3'),
       tech: ['React', 'TailwindCSS', 'UI/UX Design'],
     },
     {
       title: 'Vietstrix (Freelance Project)',
       roles: ['Founder', 'Leader', 'Fullstack Developer', 'UI/UX Designer'],
       period: '2024 – Present',
-      description:
-        'Personal freelance project oriented towards building a startup. Responsible for product development, exploring new technologies, and managing the entire development lifecycle.',
+      description: t('Experience.p4'),
       tech: ['React', 'Next.js', 'NestJS', 'MongoDB', 'Cloud Deployment'],
     },
   ];
@@ -62,16 +60,15 @@ export const WorkEx = () => {
   return (
     <section className="bg-main min-h-screen text-white py-16 px-6">
       {/* Section header */}
-      <h2 className="text-base font-bold text-white uppercase mt-4 mb-4 flex items-center gap-2">
-        <ArrowUpRight size={20} strokeWidth={1.5} /> Work Experience
-      </h2>
+
       <div className="border-b border-gray-400 mt-4" />
 
       <Container className="max-w-6xl mx-auto grid grid-cols-12 gap-8 min-h-screen">
         {/* Left side */}
         <div className="col-span-12 lg:col-span-4 p-6 lg:sticky lg:top-24 h-fit">
           <h2 className="text-4xl font-bold text-white uppercase mt-4 mb-4 flex items-center gap-2 leading-tight">
-            <ArrowUpRight size={40} strokeWidth={1.5} /> Work <br /> Experience
+            <ArrowUpRight size={40} strokeWidth={1.5} />{' '}
+            {t('Experience.title1')} <br /> {t('Experience.title2')}
           </h2>
         </div>
 
@@ -123,4 +120,3 @@ export const WorkEx = () => {
     </section>
   );
 };
-// https://drive.google.com/file/d/1eJqMIYqvkneVRR1o7uMBul9dvbgXzV_B/view?usp=sharing

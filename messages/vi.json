@@ -1,0 +1,61 @@
+{
+  "Page": {
+    "Hero": {
+      "t1": "Fullstack Dev đam mê ",
+      "t2": "UI/UX",
+      "t3": " mượt mà,",
+      "t4": " frontend",
+      "t5": " bùng nổ với React/Next, and solid",
+      "t6": " backend",
+      "t7": " chắc kèo với Node/Nest. ",
+      "t8": " Xây digital product không chỉ chạy ngon mà ",
+      "t9": " chức năng",
+      "t10": ", cũng phải",
+      "t11": " đẹp mắt",
+      "t12": " tối ưu",
+      "t13": ", và ",
+      "t14": "user-love"
+    },
+    "Introduce": {
+      "content1": "Lập trình viên full-stack với kinh nghiệm thực tế từ công việc tự do và các dự án cá nhân. Thành thạo Node.js, NestJS, React và các công cụ hiện đại như Docker và Redis. Có kinh nghiệm xây dựng và triển khai các ứng dụng web thực tế, chú trọng đến hiệu suất, khả năng mở rộng và trải nghiệm người dùng. Gần đây, tôi đã có kinh nghiệm về microservices và gRPC, và mong muốn được đào sâu chuyên môn về thiết kế hệ thống phân tán.",
+      "content2": "Mong muốn được làm việc trong môi trường sáng tạo, hợp tác, nơi tôi có thể đóng góp vào những sản phẩm ý nghĩa, trao đổi kiến ​​thức và giải quyết những thách thức phức tạp với tư duy lấy người dùng làm trọng tâm. Về lâu dài, tôi mong muốn được làm chủ các tính năng, đóng góp kỹ thuật và góp phần định hình nên những phần mềm có sức ảnh hưởng."
+    },
+    "Experience": {
+      "title1": "Kinh Nghiệm ",
+      "title2": "Làm Việc",
+      "p1": "Phát triển một trang web thông tin và quản lý nội dung cho tổ chức tôn giáo. Xử lý mọi việc từ thiết kế UI/UX đến việc phân công việc cho các thành viên vaf triển khai dự án lên môi trường thực tế, đảm bảo tối ưu hóa hiệu suất và quản lý nội dung dễ dàng.",
+      "p2": "Build a modern blogging system for an Agency project. Focus on providing beautiful UI, responsive layout and SEO for better online presence.",
+      "p3": "Phát triển website chính thức cho công ty Unien. Đảm bảo hình ảnh công ty chuyên nghiệp, thiết kế responsive và tối ưu hóa hiệu suất trên nhiều thiết bị.",
+      "p4": "Dự án tự do cá nhân hướng đến việc xây dựng một công ty khởi nghiệp. Chịu trách nhiệm phát triển sản phẩm, khám phá công nghệ mới và quản lý toàn bộ vòng đời phát triển."
+    },
+    "Featured": {
+      "title": "DỰ ÁN NỔI BẬT"
+    },
+    "Technical": {
+      "title": "Chuyên môn kỹ thuật",
+      "content": "Tôi đã phát triển một bộ kỹ năng đa dạng trong lĩnh vực của mình, tập trung vào các công nghệ web hiện đại và thực tiễn tốt nhất.",
+      "development": "Phương pháp phát triển",
+      "t1": {
+        "a": "Sạch sẽ, có thể bảo trì ",
+        "q": "Viết mã có cấu trúc tốt, được ghi chép theo các thực tiễn tốt nhất và các mẫu thiết kế."
+      },
+      "t2": {
+        "a": "Tối ưu hóa hiệu suất",
+        "q": "Tập trung vào việc tạo các ứng dụng nhanh, hiệu quả với tài sản được tối ưu hóa và phân tách mã."
+      },
+      "t3": {
+        "a": "Thiết kế đáp ứng",
+        "q": "Tất cả các dự án hoàn toàn đáp ứng, đảm bảo trải nghiệm người dùng tuyệt vời trên bất kỳ thiết bị nào."
+      }
+    },
+    "Contact": {
+      "title": "Liên Hệ"
+    },
+
+    "NotFound": {
+      "title": "Ôi không! Trang này không tồn tại.",
+      "desc1": "Liên kết bạn truy cập có thể đã sai hoặc trang đã bị xóa.",
+      "desc2": "Nhưng đừng lo, vẫn còn rất nhiều điều tuyệt vời đang chờ bạn khám phá!"
+    }
+  }
+}

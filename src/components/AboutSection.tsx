@@ -1,9 +1,12 @@
 import { motion, useInView } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { useRef } from 'react';
 import { Container } from './layout/container';
 import { StatsSection } from './StatsSection';
 
 export function AboutSection() {
+  const t = useTranslations('Page');
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.3 });
 
@@ -46,22 +49,11 @@ export function AboutSection() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <p className="text-lg text-gray-900 leading-relaxed">
-                &quot;Full-stack developer with hands-on experience from
-                freelance work and personal projects. Proficient in Node.js,
-                NestJS, React, and modern tooling such as Docker and Redis.
-                Experienced in building and deploying real-world web
-                applications with attention to performance, scalability, and
-                user experience. Recently gained exposure to microservices and
-                gRPC, and eager to deepen expertise in distributed system
-                design.
+                &quot;{t('Introduce.content1')}
               </p>
 
               <p className="text-lg text-gray-900 leading-relaxed">
-                Motivated to work in collaborative, creative environments where
-                I can contribute to meaningful products, exchange knowledge, and
-                tackle complex challenges with a user-focused mindset.
-                Long-term, I aim to take ownership of features, make technical
-                contributions, and help shape impactful software..&quot;
+                {t('Introduce.content2')} &quot;
               </p>
             </motion.div>
           </motion.div>

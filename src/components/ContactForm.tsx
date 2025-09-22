@@ -5,6 +5,7 @@ import { contactSentFormSchema } from '@/utils/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { Facebook, Github, Linkedin, Mail } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -241,6 +242,7 @@ export function ContactForm() {
       },
     }),
   };
+  const t = useTranslations('Page');
 
   return (
     <section
@@ -272,7 +274,7 @@ export function ContactForm() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <SectionHeader title="Contact Us" />
+              <SectionHeader title={t('Contact.title')} />
             </motion.div>
 
             <h2 className="text-3xl md:text-5xl lg:text-4xl font-bold text-slate-800 leading-tight">
