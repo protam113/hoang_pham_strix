@@ -137,6 +137,27 @@ export default function NavBar({
     };
   }, [sections]);
 
+  const handleSmoothScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    sectionId: string
+  ) => {
+    e.preventDefault();
+
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navbarHeight = 100;
+      const elementPosition = element.offsetTop - navbarHeight;
+
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth',
+      });
+
+      // Đóng mobile menu nếu đang mở
+      setMobileMenuOpen(false);
+    }
+  };
+
   // Close mobile menu when clicking outside or on a link
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -190,13 +211,14 @@ export default function NavBar({
             </Link>
 
             {/* Center section - Navigation Links */}
-            <div className="hidden md:flex  px-4 py-2 gap-2">
+            <div className="hidden md:flex px-4 py-2 gap-2">
               {sections.map((section, index) => {
                 const isActive = activeSection === section.id;
                 return (
-                  <Link
+                  <a
                     key={section.id || index}
                     href={`#${section.id}`}
+                    onClick={(e) => handleSmoothScroll(e, section.id)}
                     className={`
                       px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 ease-in-out hover:scale-105
                       ${
@@ -208,8 +230,6 @@ export default function NavBar({
                     style={{
                       backgroundColor: isActive
                         ? section.color || '#f97316'
-                        : isActive
-                        ? section.color || '#f97316'
                         : 'rgba(255, 255, 255, 0.7)',
                       border: !isActive
                         ? '1px solid rgba(0, 0, 0, 0.1)'
@@ -217,7 +237,7 @@ export default function NavBar({
                     }}
                   >
                     {section.label}
-                  </Link>
+                  </a>
                 );
               })}
             </div>
