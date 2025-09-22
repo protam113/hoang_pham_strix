@@ -31,11 +31,17 @@ export function ProjectsSection() {
       image: '/imgs/husth.jpg',
       href: 'https://hust4l.vercel.app/',
     },
+
     {
       title: 'UNIEN',
       category: 'Company blog',
       image: '/imgs/unu.jpg',
       href: 'https://unien.vercel.app/',
+    },
+    {
+      title: 'VIA',
+      category: 'Commerce site',
+      image: '/imgs/ via.png',
     },
   ];
 
