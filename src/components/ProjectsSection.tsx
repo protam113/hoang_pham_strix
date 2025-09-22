@@ -41,7 +41,7 @@ export function ProjectsSection() {
     {
       title: 'VIA',
       category: 'Commerce site',
-      image: '/imgs/ via.png',
+      image: '/imgs/via.png',
     },
   ];
 
