@@ -17,37 +17,39 @@ export function ProjectsSection() {
     {
       title: 'Hoi Dong Anh Em Duc Maria',
       category: 'Organization',
-      image: '/imgs/hdh.jpg',
+      image: '/imgs/hdh.webp',
       href: 'https://hoidonganhemducmaria.com/',
     },
     {
       title: 'Vietstirx',
       category: 'Start Up ',
-      image: '/imgs/vsv.jpg',
+      image: '/imgs/vsv.webp',
+      href: 'https://hoang-pham-strix.vercel.app',
     },
     {
       title: 'Hust4l',
       category: 'Commerce site',
-      image: '/imgs/husth.jpg',
+      image: '/imgs/husth.webp',
       href: 'https://hust4l.vercel.app/',
     },
 
     {
       title: 'UNIEN',
       category: 'Company blog',
-      image: '/imgs/unu.jpg',
+      image: '/imgs/unu.webp',
       href: 'https://unien.vercel.app/',
     },
     {
       title: 'VIA',
       category: 'Commerce site',
-      image: '/imgs/via.png',
+      image: '/imgs/via.webp',
+      href: 'https://hoang-pham-strix.vercel.app',
     },
   ];
 
   return (
     <section ref={ref} className="py-24 ">
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto  px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -92,7 +94,7 @@ function ProjectCard({
     >
       <div className="relative h-[600px] overflow-hidden">
         <Image
-          src={project.image || '/imgs/bgHome.jpg'}
+          src={project.image || '/imgs/bgHome.webp'}
           alt={project.title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-110"

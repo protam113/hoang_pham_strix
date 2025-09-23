@@ -2,6 +2,7 @@
 
 import { PremiumLoaderProps } from '@/types/types.prob';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export default function ShuffleLoader({
@@ -50,10 +51,18 @@ export default function ShuffleLoader({
   if (!isLoading) return null;
 
   return (
-    <div
-      className="flex flex-col items-center justify-center min-h-screen text-white bg-cover bg-center"
-      style={{ backgroundImage: 'url(/imgs/bgHome.jpg)' }}
-    >
+    <div className="flex flex-col items-center justify-center min-h-screen text-white bg-cover bg-center">
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/imgs/bgHome.webp"
+          alt="Background"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+      </div>
+
       <div className="relative w-24 h-24">
         <div className="grid grid-cols-3 grid-rows-3 gap-1">
           {squares.map((square) => (

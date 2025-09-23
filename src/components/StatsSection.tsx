@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { Container } from './layout/container';
 
-export function StatsSection() {
+export const StatsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -18,19 +18,14 @@ export function StatsSection() {
       { threshold: 0.2 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
     };
   }, []);
 
   return (
-    <div ref={sectionRef} className="w-full bg-main py-16 px-4 ">
+    <div ref={sectionRef} className="w-full bg-main py-16 px-4">
       <Container className="mx-auto">
         <div className="relative">
           {/* Timeline connector */}
@@ -46,25 +41,25 @@ export function StatsSection() {
 
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pt-10">
-            <StatCounter
+            <StatCounterMemo
               value={10}
               suffix="+"
               label="Projects Delivered"
               isVisible={isVisible}
             />
-            <StatCounter
+            <StatCounterMemo
               value={5}
               suffix="+"
               label="Satisfied Clients"
               isVisible={isVisible}
             />
-            <StatCounter
+            <StatCounterMemo
               value={9000}
               suffix="+"
               label="Exp. In Man-Hours"
               isVisible={isVisible}
             />
-            <StatCounter
+            <StatCounterMemo
               value={97}
               suffix="%"
               label="Client Retention Rate"
@@ -75,7 +70,7 @@ export function StatsSection() {
       </Container>
     </div>
   );
-}
+};
 
 function StatCounter({
   value,
@@ -89,26 +84,29 @@ function StatCounter({
   isVisible: boolean;
 }) {
   const [count, setCount] = useState(0);
+  const ref = useRef<number>(0);
 
   useEffect(() => {
     if (!isVisible) return;
-
     let start = 0;
     const end = value;
-    const duration = 2000;
-    const increment = end / (duration / 16);
+    const duration = 2000; // 2s
+    let startTime: number | null = null;
 
-    const timer = setInterval(() => {
-      start += increment;
-      if (start > end) {
-        setCount(end);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const current = Math.floor(progress * end);
+      if (current !== ref.current) {
+        setCount(current);
+        ref.current = current;
       }
-    }, 16);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    };
 
-    return () => clearInterval(timer);
+    requestAnimationFrame(step);
   }, [isVisible, value]);
 
   return (
@@ -117,7 +115,10 @@ function StatCounter({
         {count}
         {suffix}
       </h3>
-      <p className="text-[#3981c8] mt-2">{label}</p>
+      <p className="text-gray-300 mt-2">{label}</p>
     </div>
   );
 }
+
+// Memoize để tránh re-render
+const StatCounterMemo = memo(StatCounter);

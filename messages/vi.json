@@ -1,20 +1,7 @@
 {
   "Page": {
     "Hero": {
-      "t1": "Fullstack Dev đam mê ",
-      "t2": "UI/UX",
-      "t3": " mượt mà,",
-      "t4": " frontend",
-      "t5": " bùng nổ với React/Next, and solid",
-      "t6": " backend",
-      "t7": " chắc kèo với Node/Nest. ",
-      "t8": " Xây digital product không chỉ chạy ngon mà ",
-      "t9": " chức năng",
-      "t10": ", cũng phải",
-      "t11": " đẹp mắt",
-      "t12": " tối ưu",
-      "t13": ", và ",
-      "t14": "user-love"
+      "title": "Fullstack Dev đam mê UI/UX mượt mà, frontend bùng nổ với React/Next, backend chắc kèo với Node/Nest. Xây digital product không chỉ chạy ngon mà chức năng cũng phải tối ưu đẹp mắt và user-love"
     },
     "Introduce": {
       "content1": "Lập trình viên full-stack với kinh nghiệm thực tế từ công việc tự do và các dự án cá nhân. Thành thạo Node.js, NestJS, React và các công cụ hiện đại như Docker và Redis. Có kinh nghiệm xây dựng và triển khai các ứng dụng web thực tế, chú trọng đến hiệu suất, khả năng mở rộng và trải nghiệm người dùng. Gần đây, tôi đã có kinh nghiệm về microservices và gRPC, và mong muốn được đào sâu chuyên môn về thiết kế hệ thống phân tán.",

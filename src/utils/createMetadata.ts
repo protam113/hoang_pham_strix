@@ -68,7 +68,7 @@ export function createMetadata({
   publishedTime,
   modifiedTime,
   locale = 'vi_VN',
-  siteName = 'Your Site Name',
+  siteName = 'Hoang Pham CV',
   articleSection,
   tags = [],
   schemaType = 'WebPage',

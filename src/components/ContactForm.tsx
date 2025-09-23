@@ -147,7 +147,7 @@ export function Contact() {
               <CardHeader className="space-y-4">
                 <div className="flex items-center gap-4">
                   <Image
-                    src="/ava.jpeg?height=80&width=80"
+                    src="/ava.webp?height=80&width=80"
                     alt="Logo"
                     width={80}
                     height={80}

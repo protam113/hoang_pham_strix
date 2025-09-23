@@ -43,7 +43,7 @@ function SkillBar({ name, level }: { name: string; level: number }) {
       </div>
       <div className="w-full bg-white/20 rounded-full h-2">
         <div
-          className="bg-blue-500 h-2 rounded-full transition-all duration-500"
+          className="bg-white h-2 rounded-full transition-all duration-500"
           style={{ width: `${level}%` }}
         />
       </div>

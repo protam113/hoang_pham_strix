@@ -3,21 +3,25 @@
 import { Link } from '@/i18n/navigation';
 import { ArrowRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import '../../assets/styles/globals.css';
 
 export default function NotFound() {
   const t = useTranslations('Page');
 
   return (
-    <div
-      className="flex min-h-screen flex-col items-center justify-center px-4 text-center"
-      style={{
-        backgroundImage: 'url(/imgs/bgHome.jpg)',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
+    <div className="flex min-h-screen flex-col items-center justify-center px-4 text-center">
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/imgs/bgHome.webp"
+          alt="Background"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+      </div>
+
       <div className="max-w-md space-y-6 text-white">
         <h1
           className="text-[220px] font-bold leading-none tracking-tighter animate-fade-in-down"

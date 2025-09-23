@@ -1,20 +1,7 @@
 {
   "Page": {
     "Hero": {
-      "t1": "Fullstack Dev passionate about smooth ",
-      "t2": "UI/UX",
-      "t3": "explosive ",
-      "t4": "frontend",
-      "t5": "with React/Next, and solid ",
-      "t6": "backend",
-      "t7": " with Node/Nest.",
-      "t8": " I craft digital products that are not just ",
-      "t9": "functional",
-      "t10": ", but also ",
-      "t11": "beautiful ",
-      "t12": "optimized ",
-      "t13": ", and ",
-      "t14": "loved by users"
+      "title": "Fullstack Dev passionate about smooth UI/UX, heavy-duty frontend with React/Next, solid backend with Node/Nest. Building digital products that not only run well but also have beautifully optimized functions and are loved by users"
     },
     "Introduce": {
       "content1": "Full-stack developer with hands-on experience from freelance work and personal projects. Proficient in Node.js, NestJS, React, and modern tooling such as Docker and Redis. Experienced in building and deploying real-world web applications with attention to performance, scalability, and user experience. Recently gained exposure to microservices and gRPC, and eager to deepen expertise in distributed system design.",

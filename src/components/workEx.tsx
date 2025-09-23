@@ -1,29 +1,55 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useEffect } from 'react';
+import { memo } from 'react';
 import { Container } from './layout/container';
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const WorkItem = memo(({ item }: { item: any }) => {
+  return (
+    <motion.div
+      variants={itemVariants}
+      className="space-y-3"
+      whileInView="show"
+      initial="hidden"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      <h3 className="text-2xl font-semibold">{item.title}</h3>
+      <p className="text-sm text-gray-400">{item.period}</p>
+      <p className="text-gray-300">{item.description}</p>
+
+      <div className="flex flex-wrap gap-2">
+        {item.roles?.map((role: string, i: number) => (
+          <span
+            key={i}
+            className="px-2 py-1 text-xs bg-white text-primary rounded-full"
+          >
+            {role}
+          </span>
+        ))}
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        {item.tech.map((tech: string, i: number) => (
+          <span
+            key={i}
+            className="px-2 py-1 text-xs bg-white/10 text-white rounded-md"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </motion.div>
+  );
+});
+
 export const WorkEx = () => {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('opacity-100', 'translate-y-0');
-            entry.target.classList.remove('opacity-0', 'translate-y-10');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const items = document.querySelectorAll('.work-item');
-    items.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
   const t = useTranslations('Page');
 
   const workExperiences = [
@@ -88,49 +114,17 @@ export const WorkEx = () => {
         </div>
 
         {/* Right side */}
-        <div className="space-y-10 col-span-12 lg:col-span-8">
+        <motion.div
+          className="space-y-10 col-span-12 lg:col-span-8"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{ show: { transition: { staggerChildren: 0.2 } } }}
+        >
           {workExperiences.map((item, index) => (
-            <div
-              key={index}
-              className="work-item opacity-0 translate-y-10 transition-all duration-700"
-            >
-              <h3 className="text-2xl font-semibold mb-1">{item.title}</h3>
-              <p className="text-sm text-gray-400 mb-3">{item.period}</p>
-              <p className="text-gray-300 mb-3">{item.description}</p>
-
-              {/* Roles */}
-              {item.roles && (
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {item.roles.map((role, i) => (
-                    <span
-                      key={i}
-                      className="px-2 py-1 text-xs bg-white text-primary rounded-full"
-                    >
-                      {role}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              {/* Tech */}
-              <div className="flex flex-wrap gap-2">
-                {item.tech.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="px-2 py-1 text-xs bg-white/10 text-white rounded-md"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {/* Separator */}
-              {index < workExperiences.length - 1 && (
-                <div className="border-b border-gray-700 mt-6" />
-              )}
-            </div>
+            <WorkItem key={index} item={item} />
           ))}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );
