@@ -4,7 +4,7 @@ export const appInfo = {
   logo: '/icons/Og_Logo.svg',
   title: 'Hoang Pham',
   description: 'app description',
-  domain: 'https://vietstrix.com',
+  domain: 'https://hoang-pham-strix.vercel.app/',
   ogImage: '/icons/Og_Logo.svg',
   themeColor: '#ffffff',
   keywords: [
@@ -35,7 +35,7 @@ export const appInfo = {
   ],
 };
 
-export const siteBaseUrl = 'https://vietstrix.com';
+export const siteBaseUrl = 'https://hoang-pham-strix.vercel.app/';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -46,6 +46,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(appInfo.domain),
   title: appInfo.title,
   description: appInfo.description,
   keywords: appInfo.keywords,
@@ -77,14 +78,14 @@ export const metadata: Metadata = {
     title: appInfo.title,
     description: appInfo.description,
     images: [`${appInfo.domain}${appInfo.ogImage}`],
-    creator: '@vietstrix',
-    site: '@vietstrix',
+    creator: '@HoangPham',
+    site: '@HoangPham',
   },
   alternates: {
     canonical: appInfo.domain,
     languages: {
       'en-US': `${appInfo.domain}/en`,
-      'vi-VN': `${appInfo.domain}`,
+      'vi-VN': `${appInfo.domain}/vi`,
     },
   },
   robots: {
@@ -102,8 +103,8 @@ export const metadata: Metadata = {
     yandex: 'verification_token',
   },
   category: 'Website Development',
-  creator: '@vietstrix',
-  publisher: 'Vietstrix',
+  creator: '@HoangPham',
+  publisher: 'HoangPham',
 };
 
 export function PageMetadata(

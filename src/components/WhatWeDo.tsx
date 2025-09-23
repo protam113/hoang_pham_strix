@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function AnimatedFeatures() {
   return (
@@ -14,6 +15,36 @@ export default function AnimatedFeatures() {
 }
 
 function FastFriendlyApps() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const lines = useMemo(() => {
+    if (!isClient) {
+      // Return consistent server-side values
+      return [...Array(12)].map((_, i) => ({
+        speed: 1,
+        opacity: 0.2,
+        width: i % 3 === 0 ? 2 : 1,
+        height: 50,
+        delay: i * 0.1,
+        left: i * 8,
+      }));
+    }
+
+    // Client-side random values
+    return [...Array(12)].map((_, i) => ({
+      speed: 0.8 + Math.random() * 1.2,
+      opacity: 0.1 + Math.random() * 0.3,
+      width: Math.random() < 0.3 ? 2 : 1,
+      height: 30 + Math.random() * 70,
+      delay: i * 0.1 * Math.random(),
+      left: i * 8 + Math.random() * 5,
+    }));
+  }, [isClient]);
+
   return (
     <motion.div
       className="bg-main border-2 border-white/30 shadow-lg rounded-lg p-8 flex flex-col items-center justify-center relative overflow-hidden h-full"
@@ -23,35 +54,26 @@ function FastFriendlyApps() {
     >
       {/* Vertical lines animation with varying properties */}
       <div className="absolute inset-0 flex justify-around">
-        {[...Array(12)].map((_, i) => {
-          // Create varying properties for each line
-          const speed = 0.8 + Math.random() * 1.2; // Speed between 0.8 and 2
-          const opacity = 0.1 + Math.random() * 0.3; // Opacity between 0.1 and 0.4
-          const width = Math.random() < 0.3 ? 2 : 1; // Occasionally thicker lines
-          const height = 30 + Math.random() * 70; // Height between 30% and 100%
-          const delay = i * 0.1 * Math.random(); // Staggered delays
-
-          return (
-            <motion.div
-              key={i}
-              className="absolute bg-white"
-              style={{
-                width: `${width}px`,
-                height: `${height}%`,
-                left: `${i * 8 + Math.random() * 5}%`,
-                opacity: opacity,
-              }}
-              initial={{ y: '-100%' }}
-              animate={{ y: '200%' }}
-              transition={{
-                repeat: Number.POSITIVE_INFINITY,
-                duration: speed,
-                delay: delay,
-                ease: 'linear',
-              }}
-            />
-          );
-        })}
+        {lines.map((line, i) => (
+          <motion.div
+            key={i}
+            className="absolute bg-white"
+            style={{
+              width: `${line.width}px`,
+              height: `${line.height}%`,
+              left: `${line.left}%`,
+              opacity: line.opacity,
+            }}
+            initial={{ y: '-100%' }}
+            animate={{ y: '200%' }}
+            transition={{
+              repeat: Number.POSITIVE_INFINITY,
+              duration: line.speed,
+              delay: line.delay,
+              ease: 'linear',
+            }}
+          />
+        ))}
       </div>
 
       {/* Center container for phone */}
@@ -100,42 +122,112 @@ function FastFriendlyApps() {
     </motion.div>
   );
 }
-
 function CatchyIdentity() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const diamonds = useMemo(() => {
+    if (!isClient) {
+      // Return consistent server-side values
+      return [...Array(8)].map((_, i) => ({
+        size: 12,
+        top: (i * 12) % 100,
+        left: (i * 15) % 100,
+        duration: 4 + i,
+        delay: i * 0.5,
+      }));
+    }
+
+    // Client-side random values
+    return [...Array(8)].map((_, i) => ({
+      size: 8 + Math.random() * 16,
+      top: Math.random() * 100,
+      left: Math.random() * 100,
+      duration: 4 + i,
+      delay: i * 0.5,
+    }));
+  }, [isClient]);
+
+  const sparkles = useMemo(() => {
+    if (!isClient) {
+      // Return consistent server-side values
+      return [...Array(20)].map((_, i) => {
+        const angle = (i / 20) * Math.PI * 2;
+        return {
+          size: 4,
+          distance: 50,
+          x: Math.cos(angle) * 50,
+          y: Math.sin(angle) * 50,
+          duration: 1,
+          delay: i * 0.1,
+          xOffset: 0,
+          yOffset: 0,
+          repeatDelay: 1,
+        };
+      });
+    }
+
+    // Client-side random values
+    return [...Array(20)].map((_, i) => {
+      const size = 2 + Math.random() * 6;
+      const distance = 40 + Math.random() * 40;
+      const angle = Math.random() * Math.PI * 2;
+      const x = Math.cos(angle) * distance;
+      const y = Math.sin(angle) * distance;
+      const duration = 0.6 + Math.random() * 1.5;
+      const delay = Math.random() * 3;
+      const xOffset = Math.random() * 10 - 5;
+      const yOffset = Math.random() * 10 - 5;
+      const repeatDelay = Math.random() * 2;
+
+      return {
+        size,
+        distance,
+        x,
+        y,
+        duration,
+        delay,
+        xOffset,
+        yOffset,
+        repeatDelay,
+      };
+    });
+  }, [isClient]);
+
   return (
     <motion.div
-      className="bg-main  border-2 border-white/30 rounded-xl p-8 flex flex-col items-center justify-center relative overflow-hidden"
+      className="bg-main border-2 border-white/30 rounded-xl p-8 flex flex-col items-center justify-center relative overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.2 }}
     >
       {/* Background diamonds */}
-      {[...Array(8)].map((_, i) => {
-        const size = 8 + Math.random() * 16;
-        return (
-          <motion.div
-            key={i}
-            className="absolute border border-white/20 rotate-45"
-            style={{
-              width: `${size}px`,
-              height: `${size}px`,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              rotate: ['45deg', '225deg'],
-              opacity: [0, 0.3, 0],
-              scale: [0.8, 1.2, 0.8],
-            }}
-            transition={{
-              duration: 4 + i,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: 'easeInOut',
-              delay: i * 0.5,
-            }}
-          />
-        );
-      })}
+      {diamonds.map((diamond, i) => (
+        <motion.div
+          key={i}
+          className="absolute border border-white/20 rotate-45"
+          style={{
+            width: `${diamond.size}px`,
+            height: `${diamond.size}px`,
+            top: `${diamond.top}%`,
+            left: `${diamond.left}%`,
+          }}
+          animate={{
+            rotate: ['45deg', '225deg'],
+            opacity: [0, 0.3, 0],
+            scale: [0.8, 1.2, 0.8],
+          }}
+          transition={{
+            duration: diamond.duration,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: 'easeInOut',
+            delay: diamond.delay,
+          }}
+        />
+      ))}
 
       {/* Icon with pulsing glow effect */}
       <motion.div
@@ -154,46 +246,36 @@ function CatchyIdentity() {
         }}
       >
         <div className="w-28 h-28 bg-white/10 border-2 border-white rounded-lg flex items-center justify-center">
-          <span className="text-[#336887] text-3xl font-bold">Aa</span>
+          <span className="text-white text-3xl font-bold">Aa</span>
         </div>
 
         {/* Sparkles with varying properties */}
-        {[...Array(20)].map((_, i) => {
-          const size = 2 + Math.random() * 6;
-          const distance = 40 + Math.random() * 40;
-          const angle = Math.random() * Math.PI * 2;
-          const x = Math.cos(angle) * distance;
-          const y = Math.sin(angle) * distance;
-          const duration = 0.6 + Math.random() * 1.5;
-          const delay = Math.random() * 3;
-
-          return (
-            <motion.div
-              key={i}
-              className="absolute bg-white rounded-full"
-              style={{
-                width: `${size}px`,
-                height: `${size}px`,
-                left: '50%',
-                top: '50%',
-                filter: 'blur(0.5px)',
-              }}
-              initial={{ x, y, opacity: 0, scale: 0 }}
-              animate={{
-                opacity: [0, 1, 0],
-                scale: [0, 1, 0],
-                x: x + (Math.random() * 10 - 5),
-                y: y + (Math.random() * 10 - 5),
-              }}
-              transition={{
-                duration: duration,
-                repeat: Number.POSITIVE_INFINITY,
-                delay: delay,
-                repeatDelay: Math.random() * 2,
-              }}
-            />
-          );
-        })}
+        {sparkles.map((sparkle, i) => (
+          <motion.div
+            key={i}
+            className="absolute bg-white rounded-full"
+            style={{
+              width: `${sparkle.size}px`,
+              height: `${sparkle.size}px`,
+              left: '50%',
+              top: '50%',
+              filter: 'blur(0.5px)',
+            }}
+            initial={{ x: sparkle.x, y: sparkle.y, opacity: 0, scale: 0 }}
+            animate={{
+              opacity: [0, 1, 0],
+              scale: [0, 1, 0],
+              x: sparkle.x + (isClient ? Math.random() * 10 - 5 : 0),
+              y: sparkle.y + (isClient ? Math.random() * 10 - 5 : 0),
+            }}
+            transition={{
+              duration: sparkle.duration,
+              repeat: Number.POSITIVE_INFINITY,
+              delay: sparkle.delay,
+              repeatDelay: isClient ? Math.random() * 2 : 1,
+            }}
+          />
+        ))}
       </motion.div>
 
       <h2 className="text-white text-2xl font-bold mt-auto">catchy identity</h2>
