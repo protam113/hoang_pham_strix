@@ -13,7 +13,6 @@ export function ProjectsSection() {
 
   const [selectedTag, setSelectedTag] = useState<Tag | 'All'>('All');
 
-  // Lấy tất cả tags từ Tags object
   const allTags = useMemo(() => {
     return Object.values(Tags).flat();
   }, []);

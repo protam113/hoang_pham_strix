@@ -1,7 +1,7 @@
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
 import { FlatCompat } from '@eslint/eslintrc';
 import prettier from 'eslint-plugin-prettier';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -33,12 +33,10 @@ const config = [
   // Rule tùy chỉnh cho no-console
   {
     rules: {
-      'no-console': [
-        'error',
-        {
-          allow: env === 'development' ? ['log', 'warn', 'error'] : [],
-        },
-      ],
+      'no-console':
+        env === 'development'
+          ? ['warn', { allow: ['log', 'warn', 'error'] }]
+          : 'error',
       '@typescript-eslint/no-explicit-any': 'off', // Cho phép sử dụng any
     },
   },
