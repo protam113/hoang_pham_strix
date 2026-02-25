@@ -111,7 +111,6 @@ export function Contact() {
         toast.error(data.message);
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
       toast.error('Error submitting form. Please try again later.');
     } finally {
       setIsLoading(false);

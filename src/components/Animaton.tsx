@@ -357,14 +357,12 @@ function EngagingAnimation() {
         const element = elements.find((el) => el.id === step.elementId);
 
         if (!element) {
-          console.warn(`Element with id ${step.elementId} not found.`);
           currentStep = (currentStep + 1) % sequence.length;
           continue;
         }
 
         const container = containerRef.current;
         if (!container) {
-          console.warn('Container reference is null.');
           return;
         }
 
