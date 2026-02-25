@@ -171,7 +171,7 @@ function CatchyIdentity() {
     }
 
     // Client-side random values
-    return [...Array(20)].map((_, i) => {
+    return [...Array(20)].map(() => {
       const size = 2 + Math.random() * 6;
       const distance = 40 + Math.random() * 40;
       const angle = Math.random() * Math.PI * 2;

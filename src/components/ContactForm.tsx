@@ -110,7 +110,7 @@ export function Contact() {
       } else {
         toast.error(data.message);
       }
-    } catch (error) {
+    } catch {
       toast.error('Error submitting form. Please try again later.');
     } finally {
       setIsLoading(false);

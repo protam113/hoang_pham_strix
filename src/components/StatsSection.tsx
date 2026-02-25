@@ -88,7 +88,6 @@ function StatCounter({
 
   useEffect(() => {
     if (!isVisible) return;
-    let start = 0;
     const end = value;
     const duration = 2000; // 2s
     let startTime: number | null = null;

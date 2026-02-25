@@ -48,6 +48,7 @@ const WorkItem = memo(({ item }: { item: any }) => {
     </motion.div>
   );
 });
+WorkItem.displayName = 'WorkItem';
 
 export const WorkEx = () => {
   const t = useTranslations('Page');

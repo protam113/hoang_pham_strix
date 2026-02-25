@@ -1,4 +1,4 @@
-import { ContainerProps } from "@/types/types.prob";
+import { ContainerProps } from '@/types/types.prob';
 
 export function Container({ children, className }: ContainerProps) {
   return (

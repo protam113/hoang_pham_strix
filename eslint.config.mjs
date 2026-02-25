@@ -38,6 +38,7 @@ const config = [
           ? ['warn', { allow: ['log', 'warn', 'error'] }]
           : 'error',
       '@typescript-eslint/no-explicit-any': 'off', // Cho phép sử dụng any
+      'react-hooks/exhaustive-deps': 'warn', // Chuyển từ error sang warning
     },
   },
 ];

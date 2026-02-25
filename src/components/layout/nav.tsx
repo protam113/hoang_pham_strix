@@ -9,7 +9,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import LangButton from '../button/language.button';
 
 // Throttle function để giảm frequency của scroll events
-const throttle = (func: Function, delay: number) => {
+const throttle = (
+  func: (...args: any[]) => void,
+  delay: number
+): ((...args: any[]) => void) => {
   let timeoutId: NodeJS.Timeout;
   let lastExecTime = 0;
   return function (this: any, ...args: any[]) {
@@ -20,23 +23,19 @@ const throttle = (func: Function, delay: number) => {
       lastExecTime = currentTime;
     } else {
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        func.apply(this, args);
-        lastExecTime = Date.now();
-      }, delay - (currentTime - lastExecTime));
+      timeoutId = setTimeout(
+        () => {
+          func.apply(this, args);
+          lastExecTime = Date.now();
+        },
+        delay - (currentTime - lastExecTime)
+      );
     }
   };
 };
 
-export default function NavBar({
-  sections,
-  className,
-}: ScrollProgressBarProps) {
-  const [visible, setVisible] = useState(false);
+export default function NavBar({ sections }: ScrollProgressBarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState<Record<string, number>>(
-    {}
-  );
   const [activeSection, setActiveSection] = useState<string>('');
   const [isScrolling, setIsScrolling] = useState(false);
 
@@ -80,31 +79,13 @@ export default function NavBar({
           hiddenSectionRect.top < viewportHeight &&
           hiddenSectionRect.bottom > 0;
         if (isHiddenVisible) {
-          setVisible(false);
           return;
         }
-      }
-
-      // Update visibility based on scroll position
-      if (currentScrollY > 100) {
-        if (
-          !(
-            hiddenSection &&
-            hiddenSectionRect &&
-            hiddenSectionRect.top < viewportHeight &&
-            hiddenSectionRect.bottom > 0
-          )
-        ) {
-          setVisible(true);
-        }
-      } else if (currentScrollY < 50) {
-        setVisible(false);
       }
 
       lastScrollY.current = currentScrollY;
 
       // Batch state updates
-      const newProgress: Record<string, number> = {};
       let highestVisibility = 0;
       let currentActiveSection = '';
 
@@ -112,8 +93,6 @@ export default function NavBar({
       sectionsRef.current.forEach(({ id, element }) => {
         const rect = element.getBoundingClientRect();
         const sectionHeight = rect.height;
-        const sectionTop = currentScrollY + rect.top;
-        const sectionBottom = sectionTop + sectionHeight;
 
         // Calculate visibility percentage
         const visiblePx =
@@ -123,21 +102,6 @@ export default function NavBar({
           Math.min(100, (visiblePx / sectionHeight) * 100)
         );
 
-        // Calculate progress through section
-        const sectionScrollStart = Math.max(0, sectionTop - viewportHeight);
-        const sectionScrollEnd = sectionBottom;
-        const sectionScrollRange = sectionScrollEnd - sectionScrollStart;
-
-        const progress = Math.max(
-          0,
-          Math.min(
-            100,
-            ((currentScrollY - sectionScrollStart) / sectionScrollRange) * 100
-          )
-        );
-
-        newProgress[id] = progress;
-
         // Track most visible section
         if (visiblePercent > highestVisibility) {
           highestVisibility = visiblePercent;
@@ -146,14 +110,13 @@ export default function NavBar({
       });
 
       // Batch state updates để giảm re-renders
-      setScrollProgress(newProgress);
       setActiveSection(currentActiveSection);
     });
   }, []);
 
   // Throttled scroll handler
   const throttledScrollHandler = useCallback(
-    throttle(optimizedScrollHandler, 16), // ~60fps
+    () => throttle(optimizedScrollHandler, 16)(),
     [optimizedScrollHandler]
   );
 
