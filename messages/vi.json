@@ -4,8 +4,8 @@
       "title": "Fullstack Dev đam mê UI/UX mượt mà, frontend bùng nổ với React/Next, backend chắc kèo với Node/Nest. Xây digital product không chỉ chạy ngon mà chức năng cũng phải tối ưu đẹp mắt và user-love"
     },
     "Introduce": {
-      "content1": "Lập trình viên full-stack với kinh nghiệm thực tế từ công việc tự do và các dự án cá nhân. Thành thạo Node.js, NestJS, React và các công cụ hiện đại như Docker và Redis. Có kinh nghiệm xây dựng và triển khai các ứng dụng web thực tế, chú trọng đến hiệu suất, khả năng mở rộng và trải nghiệm người dùng. Gần đây, tôi đã có kinh nghiệm về microservices và gRPC, và mong muốn được đào sâu chuyên môn về thiết kế hệ thống phân tán.",
-      "content2": "Mong muốn được làm việc trong môi trường sáng tạo, hợp tác, nơi tôi có thể đóng góp vào những sản phẩm ý nghĩa, trao đổi kiến ​​thức và giải quyết những thách thức phức tạp với tư duy lấy người dùng làm trọng tâm. Về lâu dài, tôi mong muốn được làm chủ các tính năng, đóng góp kỹ thuật và góp phần định hình nên những phần mềm có sức ảnh hưởng."
+      "content1": "Lập trình viên full-stack với kinh nghiệm thực tế từ công việc tự do và các dự án cá nhân. Thành thạo Node.js, NestJS, React cùng các công nghệ hiện đại như Docker và Redis. Có kinh nghiệm xây dựng, triển khai và tối ưu các ứng dụng web với trọng tâm vào hiệu suất, khả năng mở rộng và trải nghiệm người dùng. Gần đây, tôi làm việc với kiến trúc microservices kết hợp micro frontend và gRPC, từ đó nâng cao hiểu biết về thiết kế và vận hành hệ thống phân tán.",
+      "content2": "Tôi yêu thích việc chủ động tìm tòi và thử nghiệm các công nghệ mới, đặc biệt là ứng dụng AI vào quy trình phát triển phần mềm để tăng hiệu suất và tính sáng tạo, bao gồm các phương pháp lập trình như vibe coding. Tôi mong muốn được làm việc trong môi trường sáng tạo và hợp tác, nơi có thể đóng góp vào các sản phẩm có giá trị, chia sẻ kiến thức và giải quyết những bài toán phức tạp với tư duy lấy người dùng làm trung tâm. Trong dài hạn, tôi hướng đến việc làm chủ các tính năng cốt lõi, đóng góp về mặt kỹ thuật và tham gia xây dựng những hệ thống phần mềm có tác động thực tiễn."
     },
     "Experience": {
       "title1": "Kinh Nghiệm ",
@@ -14,7 +14,9 @@
       "p2": "Build a modern blogging system for an Agency project. Focus on providing beautiful UI, responsive layout and SEO for better online presence.",
       "p3": "Phát triển website chính thức cho công ty Unien. Đảm bảo hình ảnh công ty chuyên nghiệp, thiết kế responsive và tối ưu hóa hiệu suất trên nhiều thiết bị.",
       "p4": "Dự án tự do cá nhân hướng đến việc xây dựng một công ty khởi nghiệp. Chịu trách nhiệm phát triển sản phẩm, khám phá công nghệ mới và quản lý toàn bộ vòng đời phát triển.",
-      "p5": "Dự án tự cho triễn lãm VIA xây dựng một webiste triễn lãm. Chịu trách nhiệm phát triển sản phẩm, thiết kế sản phẩm, bàn giao và quản lý toàn bộ vòng đời phát triển."
+      "p5": "Dự án tự cho triễn lãm VIA xây dựng một webiste triễn lãm. Chịu trách nhiệm phát triển sản phẩm, thiết kế sản phẩm, bàn giao và quản lý toàn bộ vòng đời phát triển.",
+      "p6": "Dự án Atom Report App nhằm xây dựng nền tảng báo cáo và phân tích dữ liệu. Chịu trách nhiệm phát triển giao diện, xử lý dữ liệu, xây dựng hệ thống báo cáo động và quản lý toàn bộ vòng đời phát triển sản phẩm.",
+      "p7": "Dự án VSS xây dựng hệ thống microservice kết hợp micro frontend cho quản lý tác vụ và giám sát. Chịu trách nhiệm thiết kế kiến trúc, phát triển tính năng và quản lý toàn bộ vòng đời phát triển."
     },
     "Featured": {
       "title": "DỰ ÁN NỔI BẬT"

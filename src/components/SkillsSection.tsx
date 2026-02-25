@@ -1,53 +1,21 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tags } from '@/types/data/project.data';
 import { motion, useInView } from 'framer-motion';
-import { Code } from 'lucide-react';
+import { Code, Database, GitBranch, Layout } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useRef } from 'react';
 import { Container } from './layout/container';
 
-const skills = {
-  frontend: [
-    { name: 'React', level: 90 },
-    { name: 'Next.js', level: 85 },
-    { name: 'TypeScript', level: 85 },
-    { name: 'JavaScript (ES6+)', level: 85 },
-    { name: 'CSS/Tailwind', level: 85 },
-    { name: 'UI/UX Design (Figma)', level: 80 },
-    { name: 'Testing (unit/e2e)', level: 60 },
-  ],
-  backend: [
-    { name: 'Node.js', level: 70 },
-    { name: 'NestJS', level: 75 },
-    { name: 'Express.js', level: 70 },
-    { name: 'RESTful API', level: 80 },
-    { name: 'GraphQL (basic)', level: 60 },
-    { name: 'Caching / Performance', level: 70 },
-    { name: 'MongoDB/ PostgreSQL / MySQL / MariaDB', level: 70 },
-    { name: 'Redis', level: 65 },
-  ],
-  workflow: [
-    { name: 'Git/GitHub/GitLab', level: 80 },
-    { name: 'Agile/Scrum Workflow', level: 65 },
-    { name: 'CI/CD (basic)', level: 60 },
-    { name: 'Docker + Deployment', level: 75 },
-  ],
-};
-
-function SkillBar({ name, level }: { name: string; level: number }) {
+function SkillTag({ name }: { name: string }) {
   return (
-    <div className="mb-3">
-      <div className="flex justify-between text-sm text-white mb-1">
-        <span>{name}</span>
-        <span>{level}%</span>
-      </div>
-      <div className="w-full bg-white/20 rounded-full h-2">
-        <div
-          className="bg-white h-2 rounded-full transition-all duration-500"
-          style={{ width: `${level}%` }}
-        />
-      </div>
-    </div>
+    <motion.div
+      className="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full text-sm text-white transition-colors"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      {name}
+    </motion.div>
   );
 }
 
@@ -75,29 +43,72 @@ export function SkillsSection() {
               {t('Technical.content')}
             </p>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-xl font-bold text-white mb-4">Frontend</h3>
-              {skills.frontend.map((s) => (
-                <SkillBar key={s.name} {...s} />
-              ))}
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <Layout className="h-5 w-5 text-white" />
+                <h3 className="text-xl font-bold text-white">Front-end</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {Tags['Front-end'].map((skill) => (
+                  <SkillTag key={skill} name={skill} />
+                ))}
+              </div>
+            </motion.div>
 
-            <div>
-              <h3 className="text-xl font-bold text-white mb-4">
-                Backend & DevOps
-              </h3>
-              {skills.backend.map((s) => (
-                <SkillBar key={s.name} {...s} />
-              ))}
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <Code className="h-5 w-5 text-white" />
+                <h3 className="text-xl font-bold text-white">Back-end</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {Tags['Back-end'].map((skill) => (
+                  <SkillTag key={skill} name={skill} />
+                ))}
+              </div>
+            </motion.div>
 
-            <div>
-              <h3 className="text-xl font-bold text-white mb-4">Workflow</h3>
-              {skills.workflow.map((s) => (
-                <SkillBar key={s.name} {...s} />
-              ))}
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <Database className="h-5 w-5 text-white" />
+                <h3 className="text-xl font-bold text-white">Database</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {Tags.Database.map((skill) => (
+                  <SkillTag key={skill} name={skill} />
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <GitBranch className="h-5 w-5 text-white" />
+                <h3 className="text-xl font-bold text-white">
+                  CI/CD & Architecture
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {[...Tags['CI-CD'], ...Tags.Architecture].map((skill) => (
+                  <SkillTag key={skill} name={skill} />
+                ))}
+              </div>
+            </motion.div>
           </div>
 
           <motion.div

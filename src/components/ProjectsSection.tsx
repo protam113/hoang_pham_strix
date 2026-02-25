@@ -1,55 +1,32 @@
 import { Button } from '@/components/ui/button';
+import { projects, Tags, type Tag } from '@/types/data/project.data';
 import { motion, useInView } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useRef } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 export function ProjectsSection() {
   const t = useTranslations('Page');
-
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.1 });
-  const router = useRouter();
 
-  const projects = [
-    {
-      title: 'Hoi Dong Anh Em Duc Maria',
-      category: 'Organization',
-      image: '/imgs/hdh.webp',
-      href: 'https://hoidonganhemducmaria.com/',
-    },
-    {
-      title: 'Vietstirx',
-      category: 'Start Up ',
-      image: '/imgs/vsv.webp',
-      href: 'https://hoang-pham-strix.vercel.app',
-    },
-    {
-      title: 'Hust4l',
-      category: 'Commerce site',
-      image: '/imgs/husth.webp',
-      href: 'https://hust4l.vercel.app/',
-    },
+  const [selectedTag, setSelectedTag] = useState<Tag | 'All'>('All');
 
-    {
-      title: 'UNIEN',
-      category: 'Company blog',
-      image: '/imgs/unu.webp',
-      href: 'https://unien.vercel.app/',
-    },
-    {
-      title: 'VIA',
-      category: 'Commerce site',
-      image: '/imgs/via.webp',
-      href: 'https://hoang-pham-strix.vercel.app',
-    },
-  ];
+  // Lấy tất cả tags từ Tags object
+  const allTags = useMemo(() => {
+    return Object.values(Tags).flat();
+  }, []);
+
+  // Lọc projects theo tag đã chọn
+  const filteredProjects = useMemo(() => {
+    if (selectedTag === 'All') return projects;
+    return projects.filter((project) => project.tag.includes(selectedTag));
+  }, [selectedTag]);
 
   return (
-    <section ref={ref} className="py-24 ">
-      <div className="container mx-auto  px-4 md:px-6">
+    <section ref={ref} className="py-24">
+      <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -60,8 +37,45 @@ export function ProjectsSection() {
             ({t('Featured.title')})
           </h2>
         </motion.div>
+
+        {/* Filter Tags */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-8 flex flex-wrap gap-2"
+        >
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => setSelectedTag('All')}
+            className={`transition-all ${
+              selectedTag === 'All'
+                ? 'bg-main text-white border-main'
+                : 'border-main text-main bg-transparent hover:bg-main/10'
+            }`}
+          >
+            All
+          </Button>
+          {allTags.map((tag) => (
+            <Button
+              key={tag}
+              size="sm"
+              variant="outline"
+              onClick={() => setSelectedTag(tag)}
+              className={`transition-all ${
+                selectedTag === tag
+                  ? 'bg-main text-white border-main'
+                  : 'border-main text-main bg-transparent hover:bg-main/10'
+              }`}
+            >
+              {tag}
+            </Button>
+          ))}
+        </motion.div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <ProjectCard
               key={project.title}
               project={project}
@@ -70,6 +84,16 @@ export function ProjectsSection() {
             />
           ))}
         </div>
+
+        {filteredProjects.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-12 text-gray-500"
+          >
+            No projects found with this tag
+          </motion.div>
+        )}
       </div>
     </section>
   );

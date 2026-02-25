@@ -4,8 +4,8 @@
       "title": "Fullstack Dev passionate about smooth UI/UX, heavy-duty frontend with React/Next, solid backend with Node/Nest. Building digital products that not only run well but also have beautifully optimized functions and are loved by users"
     },
     "Introduce": {
-      "content1": "Full-stack developer with hands-on experience from freelance work and personal projects. Proficient in Node.js, NestJS, React, and modern tooling such as Docker and Redis. Experienced in building and deploying real-world web applications with attention to performance, scalability, and user experience. Recently gained exposure to microservices and gRPC, and eager to deepen expertise in distributed system design.",
-      "content2": "Motivated to work in collaborative, creative environments where I can contribute to meaningful products, exchange knowledge, and tackle complex challenges with a user-focused mindset. Long-term, I aim to take ownership of features, make technical contributions, and help shape impactful software."
+      "content1": "Full-stack developer with hands-on experience from freelance work and personal projects. Proficient in Node.js, NestJS, React, and modern tooling such as Docker and Redis. Experienced in building and deploying real-world web applications with a strong focus on performance, scalability, and user experience. Recently worked with microservices combined with micro frontend architecture and gRPC, developing a solid foundation in distributed system design and operation.",
+      "content2": "I enjoy actively exploring and applying new technologies in real projects, especially leveraging AI to enhance development workflows, improve logic design, and boost creativity, including approaches such as vibe coding. I am motivated to work in collaborative and creative environments where I can contribute to meaningful products, share knowledge, and tackle complex challenges with a user-centered mindset. In the long term, I aim to take ownership of core features, make strong technical contributions, and help shape impactful software systems."
     },
     "Experience": {
       "title1": "Work ",
@@ -14,7 +14,9 @@
       "p2": "Built a modern blog system for an agency project. Focused on delivering a sleek UI, responsive layout, and SEO optimization for better online presence.",
       "p3": "Developed the official website for Unien company. Ensured a professional corporate image, responsive design, and optimized performance across devices.",
       "p4": "Personal freelance project oriented towards building a startup. Responsible for product development, exploring new technologies, and managing the entire development lifecycle.",
-      "p5": "VIA Exhibition Self-Exhibition Project builds an exhibition website. Responsible for product development, product design, delivery and management of the entire development lifecycle."
+      "p5": "VIA Exhibition Self-Exhibition Project builds an exhibition website. Responsible for product development, product design, delivery and management of the entire development lifecycle.",
+      "p6": "Atom Report App aims to deliver a reporting and data analytics platform. Responsible for designing the system, developing core features, and managing the full product development lifecycle.",
+      "p7": "The VSS project is a personal project focused on building a microservice-based system combined with a micro frontend architecture for task management and system monitoring. Responsible for designing the architecture, developing independent services, implementing microFE-based UI, and managing the entire product development lifecycle."
     },
     "Featured": {
       "title": "FEATURED WORK"

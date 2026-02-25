@@ -96,6 +96,42 @@ export const WorkEx = () => {
       description: t('Experience.p4'),
       tech: ['React', 'Next.js', 'NestJS', 'MongoDB', 'Cloud Deployment'],
     },
+    {
+      title: 'Atom Report App (Freelance Project)',
+      roles: ['Fullstack Developer', 'UI/UX Designer'],
+      period: 'Oct 2025 – Jan 2026',
+      description: t('Experience.p6'),
+      tech: [
+        'React',
+        'Vite',
+        'NestJS',
+        'Go',
+        'Microservice',
+        'MongoDB',
+        'Nginx',
+      ],
+    },
+
+    {
+      title: 'Vss App (Solo Project)',
+      roles: ['Fullstack Developer', 'UI/UX Designer'],
+      period: 'Jan 2026 – *** 2026',
+      description: t('Experience.p7'),
+      tech: [
+        'React',
+        'Vite',
+        'NestJS',
+        'Go',
+        'Microservice',
+        'MongoDB',
+        'Nginx',
+        'Rust',
+        'Ruby on rails',
+        'Micro Frontned',
+        'PostgreSql',
+        'Minio',
+      ],
+    },
   ];
 
   return (

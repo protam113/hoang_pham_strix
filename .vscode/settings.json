@@ -14,5 +14,6 @@
   // Bật highlight khoảng trắng thừa (cho dễ thấy)
   "files.trimTrailingWhitespace": true,
   "files.trimFinalNewlines": true,
-  "files.insertFinalNewline": true
+  "files.insertFinalNewline": true,
+  "kiroAgent.configureMCP": "Disabled"
 }
