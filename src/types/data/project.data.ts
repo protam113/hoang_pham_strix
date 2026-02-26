@@ -119,7 +119,13 @@ export const projects: Project[] = [
       'Nginx',
     ],
   },
-
+  {
+    title: 'Finance News App',
+    category: 'News',
+    image: '/imgs/news.jpeg',
+    href: 'https://news-finace-app-d27p-hjoowkxuj-protam113s-projects.vercel.app/',
+    tag: ['Nextjs', 'React', 'TailwindCSS'],
+  },
   {
     title: 'Vss App',
     category: 'To do list',

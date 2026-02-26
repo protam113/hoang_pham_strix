@@ -16,7 +16,8 @@
       "p4": "Personal freelance project oriented towards building a startup. Responsible for product development, exploring new technologies, and managing the entire development lifecycle.",
       "p5": "VIA Exhibition Self-Exhibition Project builds an exhibition website. Responsible for product development, product design, delivery and management of the entire development lifecycle.",
       "p6": "Atom Report App aims to deliver a reporting and data analytics platform. Responsible for designing the system, developing core features, and managing the full product development lifecycle.",
-      "p7": "The VSS project is a personal project focused on building a microservice-based system combined with a micro frontend architecture for task management and system monitoring. Responsible for designing the architecture, developing independent services, implementing microFE-based UI, and managing the entire product development lifecycle."
+      "p7": "The VSS project is a personal project focused on building a microservice-based system combined with a micro frontend architecture for task management and system monitoring. Responsible for designing the architecture, developing independent services, implementing microFE-based UI, and managing the entire product development lifecycle.",
+      "p8": "This is a comprehensive financial dashboard featuring four main views: Map (global economic events visualization), List (detailed economic calendar), Indices (worldwide stock market indices), and News (real-time updates from The Guardian). The application aggregates data from multiple sources to provide users with a holistic view of global financial markets and economic conditions."
     },
     "Featured": {
       "title": "FEATURED WORK"

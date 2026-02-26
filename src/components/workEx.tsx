@@ -112,7 +112,13 @@ export const WorkEx = () => {
         'Nginx',
       ],
     },
-
+    {
+      title: 'Fiance News App (Solo Project)',
+      roles: ['Fullstack Developer', 'UI/UX Designer'],
+      period: 'Jan 2026 – *** 2026',
+      description: t('Experience.p8'),
+      tech: ['React', 'NextJS'],
+    },
     {
       title: 'Vss App (Solo Project)',
       roles: ['Fullstack Developer', 'UI/UX Designer'],

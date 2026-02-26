@@ -16,7 +16,8 @@
       "p4": "Dự án tự do cá nhân hướng đến việc xây dựng một công ty khởi nghiệp. Chịu trách nhiệm phát triển sản phẩm, khám phá công nghệ mới và quản lý toàn bộ vòng đời phát triển.",
       "p5": "Dự án tự cho triễn lãm VIA xây dựng một webiste triễn lãm. Chịu trách nhiệm phát triển sản phẩm, thiết kế sản phẩm, bàn giao và quản lý toàn bộ vòng đời phát triển.",
       "p6": "Dự án Atom Report App nhằm xây dựng nền tảng báo cáo và phân tích dữ liệu. Chịu trách nhiệm phát triển giao diện, xử lý dữ liệu, xây dựng hệ thống báo cáo động và quản lý toàn bộ vòng đời phát triển sản phẩm.",
-      "p7": "Dự án VSS xây dựng hệ thống microservice kết hợp micro frontend cho quản lý tác vụ và giám sát. Chịu trách nhiệm thiết kế kiến trúc, phát triển tính năng và quản lý toàn bộ vòng đời phát triển."
+      "p7": "Dự án VSS xây dựng hệ thống microservice kết hợp micro frontend cho quản lý tác vụ và giám sát. Chịu trách nhiệm thiết kế kiến trúc, phát triển tính năng và quản lý toàn bộ vòng đời phát triển.",
+      "p8": "Đây là một dashboard tài chính toàn diện với 4 chế độ xem - Map (bản đồ sự kiện kinh tế), List (lịch kinh tế chi tiết), Indices (chỉ số chứng khoán toàn cầu), và News (tin tức từ The Guardian). Ứng dụng tích hợp dữ liệu từ nhiều nguồn để cung cấp cái nhìn tổng quan về thị trường tài chính và kinh tế thế giới."
     },
     "Featured": {
       "title": "DỰ ÁN NỔI BẬT"
