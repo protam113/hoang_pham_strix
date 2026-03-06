@@ -42,6 +42,16 @@
     "Contact": {
       "title": "Contact"
     },
+    "Apps": {
+      "s1": {
+        "a": "Automated Raster to Vector Map Conversion Tool",
+        "q": "Map Converter automatically transforms raster map images (PNG/JPG) into vector formats (DXF and PDF). The tool detects and separates three layers: water bodies, land blocks, and road networks using advanced computer vision algorithms (HSV analysis, morphological operations, skeletonization). User-friendly web interface suitable for all users. Exported DXF files are AutoCAD-compatible with auto-colored and named layers. Supports overlay preview, command line interface, and standalone executable builds."
+      },
+      "s2": {
+        "a": " Automated Tax Code Lookup System",
+        "q": "An automated tax code (MST) and citizen ID lookup system from masothue.com, using AI to solve captchas with 97.36% accuracy. Features user-friendly GUI, batch processing with parallel mode (5-10 workers) for 3-5x speed boost. Automatically bypasses Cloudflare, processes captchas via SVM model, exports complete business data to Excel. Ideal tool for accountants and auditors requiring fast bulk tax information lookups."
+      }
+    },
     "NotFound": {
       "title": "Oh no! This page doesn’t exist.",
       "desc1": "The link you followed might be broken or the page may have been removed.",

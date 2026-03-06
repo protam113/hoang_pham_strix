@@ -42,7 +42,16 @@
     "Contact": {
       "title": "Liên Hệ"
     },
-
+    "Apps": {
+      "s1": {
+        "a": "Công Cụ Chuyển Đổi Bản Đồ Raster Sang Vector Tự Động",
+        "q": "Map Converter là công cụ chuyển đổi bản đồ từ hình ảnh PNG/JPG sang định dạng vector DXF và PDF. Ứng dụng tự động nhận diện và tách ba lớp: vùng nước, đất liền, và đường giao thông bằng thuật toán xử lý ảnh tiên tiến (HSV analysis, morphological operations, skeletonization). Giao diện web thân thiện phù hợp cho mọi người dùng. File DXF xuất ra tương thích AutoCAD với các lớp được tự động tô màu và đặt tên. Hỗ trợ xem trước overlay, command line, và build executable độc lập."
+      },
+      "s2": {
+        "a": "Hệ thống Tra cứu Mã số Thuế Tự động",
+        "q": "Hệ thống tra cứu mã số thuế (MST) và CCCD tự động từ masothue.com, sử dụng AI giải captcha với độ chính xác 97.36%. Ứng dụng có giao diện đồ họa thân thiện, hỗ trợ tra cứu hàng loạt với chế độ parallel (5-10 workers), tăng tốc 3-5 lần. Tự động bypass Cloudflare, xử lý captcha bằng SVM model, xuất kết quả Excel đầy đủ thông tin doanh nghiệp. Công cụ lý tưởng cho kế toán, kiểm toán viên cần tra cứu thông tin thuế nhanh chóng."
+      }
+    },
     "NotFound": {
       "title": "Ôi không! Trang này không tồn tại.",
       "desc1": "Liên kết bạn truy cập có thể đã sai hoặc trang đã bị xóa.",

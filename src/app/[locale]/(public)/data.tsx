@@ -2,6 +2,7 @@
 
 import { AboutSection } from '@/components/AboutSection';
 import AnimationComponents from '@/components/Animaton';
+import AppSections from '@/components/appsSection';
 import { ContactForm } from '@/components/ContactForm';
 import { Introduce } from '@/components/introduce';
 import Footer from '@/components/layout/footer';
@@ -17,6 +18,7 @@ export const MyPage = () => {
     { id: 'about', label: 'Who am i?', color: '#013162' },
     { id: 'experience', label: 'Work Experience', color: '#013162' },
     { id: 'projects', label: 'Projects', color: '#013162' },
+    { id: 'apps', label: 'Apps', color: '#013162' },
     { id: 'skills', label: 'Skills', color: '#013162' },
     { id: 'contact', label: "Let's Connect ", color: '#013162' },
   ];
@@ -38,6 +40,10 @@ export const MyPage = () => {
 
         <section id="projects">
           <ProjectsSection />
+        </section>
+
+        <section id="apps">
+          <AppSections />
         </section>
 
         <section id="skills">
