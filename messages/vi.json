@@ -1,11 +1,11 @@
 {
   "Page": {
     "Hero": {
-      "title": "Fullstack Dev đam mê UI/UX mượt mà, frontend bùng nổ với React/Next, backend chắc kèo với Node/Nest. Xây digital product không chỉ chạy ngon mà chức năng cũng phải tối ưu đẹp mắt và user-love"
+      "title": "Mình là Hoàng Phạm, một lập trình viên Full-Stack tại TP. Hồ Chí Minh, Việt Nam. Mình có khoảng {years} năm kinh nghiệm phát triển ứng dụng web với các công nghệ như React.js, Next.js, Vite ở phía Frontend và Node.js, NestJS, Go ở phía Backend. Ngoài ra mình cũng có kinh nghiệm làm việc với Cloud Platform để triển khai và vận hành hệ thống. Hiện tại mình đang tìm kiếm các dự án mới để hợp tác và phát triển."
     },
     "Introduce": {
-      "content1": "Lập trình viên full-stack với kinh nghiệm thực tế từ công việc tự do và các dự án cá nhân. Thành thạo Node.js, NestJS, React cùng các công nghệ hiện đại như Docker và Redis. Có kinh nghiệm xây dựng, triển khai và tối ưu các ứng dụng web với trọng tâm vào hiệu suất, khả năng mở rộng và trải nghiệm người dùng. Gần đây, tôi làm việc với kiến trúc microservices kết hợp micro frontend và gRPC, từ đó nâng cao hiểu biết về thiết kế và vận hành hệ thống phân tán.",
-      "content2": "Tôi yêu thích việc chủ động tìm tòi và thử nghiệm các công nghệ mới, đặc biệt là ứng dụng AI vào quy trình phát triển phần mềm để tăng hiệu suất và tính sáng tạo, bao gồm các phương pháp lập trình như vibe coding. Tôi mong muốn được làm việc trong môi trường sáng tạo và hợp tác, nơi có thể đóng góp vào các sản phẩm có giá trị, chia sẻ kiến thức và giải quyết những bài toán phức tạp với tư duy lấy người dùng làm trung tâm. Trong dài hạn, tôi hướng đến việc làm chủ các tính năng cốt lõi, đóng góp về mặt kỹ thuật và tham gia xây dựng những hệ thống phần mềm có tác động thực tiễn."
+      "content1": "Lập trình viên full-stack với kinh nghiệm thực tế từ công việc tự do và các dự án cá nhân. Thành thạo Node.js, NestJS, React cùng các công nghệ hiện đại như Docker và Redis. Có kinh nghiệm xây dựng, triển khai và tối ưu các ứng dụng web với trọng tâm vào hiệu suất, khả năng mở rộng và trải nghiệm người dùng. Gần đây, mình làm việc với kiến trúc microservices kết hợp micro frontend và gRPC, từ đó nâng cao hiểu biết về thiết kế và vận hành hệ thống phân tán.",
+      "content2": "Mình yêu thích việc chủ động tìm tòi và thử nghiệm các công nghệ mới, đặc biệt là ứng dụng AI vào quy trình phát triển phần mềm để tăng hiệu suất và tính sáng tạo, bao gồm các phương pháp lập trình như vibe coding. mình mong muốn được làm việc trong môi trường sáng tạo và hợp tác, nơi có thể đóng góp vào các sản phẩm có giá trị, chia sẻ kiến thức và giải quyết những bài toán phức tạp với tư duy lấy người dùng làm trung tâm. Trong dài hạn, mình hướng đến việc làm chủ các tính năng cốt lõi, đóng góp về mặt kỹ thuật và tham gia xây dựng những hệ thống phần mềm có tác động thực tiễn."
     },
     "Experience": {
       "title1": "Kinh Nghiệm ",
@@ -24,7 +24,7 @@
     },
     "Technical": {
       "title": "Chuyên môn kỹ thuật",
-      "content": "Tôi đã phát triển một bộ kỹ năng đa dạng trong lĩnh vực của mình, tập trung vào các công nghệ web hiện đại và thực tiễn tốt nhất.",
+      "content": "mình đã phát triển một bộ kỹ năng đa dạng trong lĩnh vực của mình, tập trung vào các công nghệ web hiện đại và thực tiễn tốt nhất.",
       "development": "Phương pháp phát triển",
       "t1": {
         "a": "Sạch sẽ, có thể bảo trì ",

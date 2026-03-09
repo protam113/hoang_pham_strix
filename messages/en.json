@@ -1,7 +1,7 @@
 {
   "Page": {
     "Hero": {
-      "title": "Fullstack Dev passionate about smooth UI/UX, heavy-duty frontend with React/Next, solid backend with Node/Nest. Building digital products that not only run well but also have beautifully optimized functions and are loved by users"
+      "title": "My name is Hoang Pham, and I'm a full-stack developer based in Ho Chi Minh City, Vietnam. I have about {years} years of experience developing web applications using technologies like React.js, Next.js, and Vite on the frontend, and Node.js, NestJS, and Go on the backend. I also have experience working with Cloud Platform for system deployment and operation. I'm currently looking for new projects to collaborate on and develop."
     },
     "Introduce": {
       "content1": "Full-stack developer with hands-on experience from freelance work and personal projects. Proficient in Node.js, NestJS, React, and modern tooling such as Docker and Redis. Experienced in building and deploying real-world web applications with a strong focus on performance, scalability, and user experience. Recently worked with microservices combined with micro frontend architecture and gRPC, developing a solid foundation in distributed system design and operation.",

@@ -8,11 +8,14 @@ const itemVariantsRight = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
+import { calculateExperience } from '@/utils/calculateExperience';
 import Image from 'next/image';
 import { Container } from './layout/container';
 
 export function Introduce() {
   const t = useTranslations('Page');
+  const currentYear = new Date().getFullYear();
+  const yearsOfExperience = calculateExperience(2024, 9); // Started September 2024
 
   return (
     <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -36,10 +39,10 @@ export function Introduce() {
           <div className="lg:col-span-3 space-y-4 sm:space-y-6 lg:space-y-8">
             <div className="space-y-3 sm:space-y-2 sm:mt-[120px] mt-2">
               <div className="text-xs sm:text-sm text-muted-foreground bg-white/90 backdrop-blur-sm px-2 py-1 rounded font-mono tracking-wider inline-block">
-                PORTFOLIO / 2025
+                PORTFOLIO / {currentYear}
               </div>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light text-gray-400 tracking-tight">
-                Pham
+                Pham Minh
                 <br />
                 <span className="text-white">Hoang</span>
               </h1>
@@ -51,7 +54,7 @@ export function Introduce() {
                 variants={itemVariantsRight}
               >
                 <p className="text-lg text-white leading-relaxed">
-                  {t('Hero.title')}
+                  {t('Hero.title', { years: yearsOfExperience })}
                 </p>
               </motion.div>
 
@@ -65,12 +68,11 @@ export function Introduce() {
             </div>
           </div>
 
-          <div className="lg:col-span-2 flex flex-col justify-end space-y-6 sm:space-y-8 mt-8 lg:mt-0">
+          <div className="lg:col-span-2 flex flex-col justify-end space-y-6 sm:space-y-8 mt-4 lg:mt-0">
             <div className="space-y-4">
               <div className="text-sm text-gray-200 font-mono">CURRENTLY</div>
               <div className="space-y-2">
                 <div className="text-white">Fullstack Developer</div>
-                <div className="text-white">@ _mh.len_</div>
               </div>
             </div>
 
@@ -83,15 +85,11 @@ export function Introduce() {
                   'TypeScript',
                   'JavaScript (ES6+)',
                   'TailwindCSS',
-                  'UI/UX (Figma)',
                   'Node.js',
                   'NestJS',
                   'Express',
-                  'MongoDB',
-                  'PostgreSQL',
-                  'MySQL',
-                  'MariaDB',
-                  'Redis',
+                  'Sql',
+                  'No Sql',
                   'Docker',
                   'Git / GitHub',
                   'CI/CD',
