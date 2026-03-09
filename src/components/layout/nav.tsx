@@ -282,7 +282,7 @@ export default function NavBar({ sections }: ScrollProgressBarProps) {
             {/* Right section - Contact Button */}
             <div className="hidden md:flex items-center gap-2">
               <a
-                href="https://drive.google.com/file/d/1eJqMIYqvkneVRR1o7uMBul9dvbgXzV_B/view?usp=sharing"
+                href="https://drive.google.com/file/d/1QMf7nAuBjlBrLk2Gga-7OaS1R5Dy_PAs/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border bg-main text-lg px-4 py-1 rounded-full text-white hover:bg-main-600 hover:text-white transition-colors duration-200"
