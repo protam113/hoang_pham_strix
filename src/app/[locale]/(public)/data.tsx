@@ -1,60 +1,63 @@
 'use client';
 
-import { AboutSection } from '@/components/AboutSection';
-import AnimationComponents from '@/components/Animaton';
 import AppSections from '@/components/appsSection';
-import { ContactForm } from '@/components/ContactForm';
-import { Introduce } from '@/components/introduce';
+import CustomCursor from '@/components/CustomCursor';
+import HeroSection from '@/components/hero';
 import Footer from '@/components/layout/footer';
 import NavBar from '@/components/layout/nav';
-import { ProjectsSection } from '@/components/ProjectsSection';
-import { SkillsSection } from '@/components/SkillsSection';
+import MissionSection from '@/components/missionSection';
+import MasonryGallerySection from '@/components/project';
+import SectionTransition from '@/components/SectionTransition';
+import Slogan from '@/components/slogan';
+import TechSection from '@/components/techSection';
 import TextMarquee from '@/components/TitleMarquee';
 import { WorkEx } from '@/components/workEx';
+import { useLoading } from '@/contexts/LoadingContext';
 
 export const MyPage = () => {
+  const { heroReady } = useLoading();
+
   const sections = [
     { id: 'main', label: 'Introduce', color: '#013162' },
     { id: 'about', label: 'Who am i?', color: '#013162' },
     { id: 'experience', label: 'Work Experience', color: '#013162' },
     { id: 'projects', label: 'Projects', color: '#013162' },
-    { id: 'apps', label: 'Apps', color: '#013162' },
     { id: 'skills', label: 'Skills', color: '#013162' },
-    { id: 'contact', label: "Let's Connect ", color: '#013162' },
+    { id: 'apps', label: 'Apps', color: '#013162' },
   ];
+
+  if (!heroReady) return null;
+
   return (
     <div>
+      <CustomCursor />
       <NavBar sections={sections} />
-      <main>
+      <main className="bg-main">
         <section id="main">
-          <Introduce />
+          <HeroSection />
         </section>
 
-        <section id="about">
-          <AboutSection />
-        </section>
+        <SectionTransition id="about" className="-mt-[100vh]">
+          <MissionSection />
+        </SectionTransition>
 
-        <section id="experience">
+        <SectionTransition id="experience">
           <WorkEx />
-        </section>
+        </SectionTransition>
 
-        <section id="projects">
-          <ProjectsSection />
-        </section>
+        <SectionTransition id="projects">
+          <MasonryGallerySection />
+        </SectionTransition>
 
-        <section id="apps">
+        <SectionTransition id="skills">
+          <TechSection />
+          <Slogan />
+        </SectionTransition>
+
+        <SectionTransition id="apps">
           <AppSections />
-        </section>
-
-        <section id="skills">
-          <SkillsSection />
-          <AnimationComponents />
-        </section>
-
-        <section id="contact">
           <TextMarquee />
-          <ContactForm />
-        </section>
+        </SectionTransition>
       </main>
       <Footer />
     </div>

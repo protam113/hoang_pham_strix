@@ -11,7 +11,7 @@ export default function LayoutDefault({
 }>) {
   return (
     <>
-      <main>
+      <main className="bg-main">
         <div>{children}</div>
         <ScrollToTopButton />
       </main>

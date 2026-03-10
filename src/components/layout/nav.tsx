@@ -8,7 +8,6 @@ import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import LangButton from '../button/language.button';
 
-// Throttle function để giảm frequency của scroll events
 const throttle = (
   func: (...args: any[]) => void,
   delay: number

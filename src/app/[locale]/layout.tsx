@@ -1,6 +1,7 @@
 import '@/assets/styles/globals.css';
 import { DelayedLoading } from '@/components/delay';
 import { metadata as siteMetadata } from '@/constants/appInfos';
+import { LoadingProvider } from '@/contexts/LoadingContext';
 import { NextIntlClientProvider } from 'next-intl';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Script from 'next/script';
@@ -35,17 +36,19 @@ export default async function RootLayout(props: any) {
         `}</Script>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-main`}
       >
-        <DelayedLoading duration={1000} />
+        <LoadingProvider>
+          <DelayedLoading duration={1000} />
 
-        {/* <CheckLocale /> */}
-        <NextIntlClientProvider>
-          <div>
-            {children}
-            <Toaster position="top-right" richColors />
-          </div>
-        </NextIntlClientProvider>
+          {/* <CheckLocale /> */}
+          <NextIntlClientProvider>
+            <div>
+              {children}
+              <Toaster position="top-right" richColors />
+            </div>
+          </NextIntlClientProvider>
+        </LoadingProvider>
         <Script
           id="add-mdl-class"
           strategy="afterInteractive"

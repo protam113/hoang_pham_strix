@@ -39,6 +39,7 @@ export type Project = {
   image: string;
   href: string;
   tag: Tag[];
+  aspect: string;
 };
 
 export const projects: Project[] = [
@@ -48,6 +49,7 @@ export const projects: Project[] = [
     image: '/imgs/hdh.webp',
     href: 'https://hoidonganhemducmaria.com/',
     tag: ['Nextjs', 'Docker', 'CI-CD', 'React'],
+    aspect: 'aspect-[3/4]',
   },
   {
     title: 'Vietstirx',
@@ -55,6 +57,7 @@ export const projects: Project[] = [
     image: '/imgs/vsv.webp',
     href: 'https://hoang-pham-strix.vercel.app',
     tag: ['Nextjs', 'React', 'TailwindCSS', 'CI-CD', 'GitHub'],
+    aspect: 'aspect-[4/3]',
   },
   {
     title: 'Hust4l',
@@ -70,6 +73,7 @@ export const projects: Project[] = [
       'React Query',
       'GitHub',
     ],
+    aspect: 'aspect-[3/4]',
   },
   {
     title: 'UNIEN',
@@ -88,6 +92,7 @@ export const projects: Project[] = [
       'Docker',
       'GitHub',
     ],
+    aspect: 'aspect-[4/3]',
   },
   {
     title: 'VIA',
@@ -95,6 +100,7 @@ export const projects: Project[] = [
     image: '/imgs/via.webp',
     href: 'https://hoang-pham-strix.vercel.app',
     tag: ['Nextjs', 'React', 'TailwindCSS', 'Docker', 'Zustand', 'React Query'],
+    aspect: 'aspect-[3/4]',
   },
   {
     title: 'Atom Report App',
@@ -118,6 +124,7 @@ export const projects: Project[] = [
       'GitHub',
       'Nginx',
     ],
+    aspect: 'aspect-[3/4]',
   },
   {
     title: 'Finance News App',
@@ -125,6 +132,7 @@ export const projects: Project[] = [
     image: '/imgs/news.jpeg',
     href: 'https://news-finace-app-d27p-hjoowkxuj-protam113s-projects.vercel.app/',
     tag: ['Nextjs', 'React', 'TailwindCSS'],
+    aspect: 'aspect-[4/3]',
   },
   {
     title: 'Vss App',
@@ -153,5 +161,6 @@ export const projects: Project[] = [
       'OAuth2',
       'PostgreSQL',
     ],
+    aspect: 'aspect-[4/3]',
   },
 ];

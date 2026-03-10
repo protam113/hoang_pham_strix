@@ -97,7 +97,7 @@ export function Introduce() {
                 ].map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 text-xs border border-border text-white rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
+                    className="px-3 hover:bg-white hover:text-main hover:font-bold py-1 text-xs border border-border text-white rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
                   >
                     {skill}
                   </span>
