@@ -18,6 +18,9 @@ export default function InteractivePortrait() {
     const width = container.clientWidth;
     const height = container.clientHeight;
 
+    // Detect mobile for performance optimization
+    const isMobileDevice = width < 768;
+
     const gu = {
       time: { value: 0 },
       dTime: { value: 0 },
@@ -37,9 +40,15 @@ export default function InteractivePortrait() {
     );
     camera.position.z = 1;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({
+      antialias: !isMobileDevice, // Disable antialiasing on mobile
+      alpha: true,
+      powerPreference: isMobileDevice ? 'low-power' : 'high-performance',
+    });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(
+      Math.min(window.devicePixelRatio, isMobileDevice ? 1.5 : 2)
+    );
     container.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 

@@ -232,10 +232,8 @@ export default function TechSection() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 md:mb-12">
           <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-main leading-tight">
-            <span className="block font-sans leading-[0.85] text-lorenzo-dark">
-              TECH
-            </span>
-            <span className="block text-lorenzo-dark text-9xl">STACKS</span>
+            <span className="block font-sans leading-[0.85]">TECH</span>
+            <span className="block text-7xl lg:text-9xl">STACKS</span>
           </h2>
           <p className="text-base mt-6 max-w-2xl text-lorenzo-dark md:text-base">
             Explore the technical specifications of my tech stack. Hover over

@@ -32,6 +32,50 @@ export default function HeroSection() {
   const exitY = useTransform(smoothProgress, [0.85, 1], ['0%', '-100%']);
   const exitOpacity = useTransform(smoothProgress, [0.9, 1], [1, 0]);
 
+  // Mobile: Simplified static layout
+  if (isMobile) {
+    return (
+      <section
+        ref={containerRef}
+        className="relative h-[200vh] bg-main"
+        style={{
+          touchAction: 'pan-y',
+          WebkitOverflowScrolling: 'touch',
+        }}
+      >
+        <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center bg-background">
+          <motion.div
+            className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none"
+            style={{
+              y: exitY,
+              opacity: exitOpacity,
+            }}
+          >
+            <motion.div
+              className="w-full h-full flex items-center justify-center opacity-0"
+              style={{ opacity: textOpacity }}
+            >
+              <SignatureMarqueeSection />
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            className="relative z-10 w-full h-full flex items-center justify-center pointer-events-none"
+            style={{
+              scale: scale,
+              y: exitY,
+              opacity: exitOpacity,
+              willChange: 'transform',
+            }}
+          >
+            <InteractivePortrait />
+          </motion.div>
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop: Full scroll animation
   return (
     <section
       ref={containerRef}
@@ -63,6 +107,7 @@ export default function HeroSection() {
             scale: scale,
             y: exitY,
             opacity: exitOpacity,
+            willChange: 'transform',
           }}
         >
           <InteractivePortrait />
