@@ -403,8 +403,8 @@ export default function InteractivePortrait() {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 w-full h-full bg-[#1a1f1a] overflow-hidden"
-      style={{ touchAction: 'none' }}
+      className="absolute inset-0 w-full h-full  overflow-hidden pointer-events-auto"
+      style={{ touchAction: 'pan-y' }}
     >
       {/* <img
         src="/images/inspired-by-lando-norris.png"

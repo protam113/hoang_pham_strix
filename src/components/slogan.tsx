@@ -43,11 +43,12 @@ export default function Slogan() {
             transition={{ duration: 1 }}
             viewport={{ once: true }}
             className="relative w-full aspect-4/5 md:aspect-square max-w-lg mx-auto lg:mx-0 order-1 lg:order-2"
+            style={{ touchAction: 'pan-y' }}
           >
-            <div className="absolute -top-4 -left-4 w-16 h-16 border-t-4 border-l-4 border-white rounded-tl-3xl z-20" />
-            <div className="absolute -top-4 -right-4 w-16 h-16 border-t-4 border-r-4 border-white rounded-tr-3xl z-20" />
-            <div className="absolute -bottom-4 -left-4 w-16 h-16 border-b-4 border-l-4 border-white rounded-bl-3xl z-20" />
-            <div className="absolute -bottom-4 -right-4 w-16 h-16 border-b-4 border-r-4 border-white rounded-br-3xl z-20" />
+            <div className="hidden md:block absolute -top-4 -left-4 w-16 h-16 border-t-4 border-l-4 border-white rounded-tl-3xl z-20" />
+            <div className="hidden md:block absolute -top-4 -right-4 w-16 h-16 border-t-4 border-r-4 border-white rounded-tr-3xl z-20" />
+            <div className="hidden md:block absolute -bottom-4 -left-4 w-16 h-16 border-b-4 border-l-4 border-white rounded-bl-3xl z-20" />
+            <div className="hidden md:block absolute -bottom-4 -right-4 w-16 h-16 border-b-4 border-r-4 border-white rounded-br-3xl z-20" />
             <InteractiveClean />
           </motion.div>
         </div>

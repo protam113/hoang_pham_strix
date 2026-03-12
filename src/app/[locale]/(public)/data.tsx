@@ -45,11 +45,14 @@ export const MyPage = () => {
           <WorkEx />
         </SectionTransition>
 
-        <SectionTransition id="projects">
+        <SectionTransition
+          id="projects"
+          className="relative z-10 pb-20 md:pb-32"
+        >
           <MasonryGallerySection />
         </SectionTransition>
 
-        <SectionTransition id="skills">
+        <SectionTransition id="skills" className="relative z-20 mt-32 md:mt-24">
           <TechSection />
           <Slogan />
         </SectionTransition>

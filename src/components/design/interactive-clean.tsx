@@ -182,7 +182,7 @@ export function InteractiveClean() {
     >
       <div
         ref={containerRef}
-        className="relative w-full h-full select-none touch-none group cursor-none bg-gray-900"
+        className="relative w-full h-full select-none group cursor-none bg-gray-900"
         style={{
           // --- AQUI A MÁGICA ACONTECE ---
           // O WebkitMaskImage é para Chrome/Safari/Edge
@@ -198,6 +198,8 @@ export function InteractiveClean() {
 
           WebkitMaskPosition: 'center',
           maskPosition: 'center',
+
+          touchAction: 'pan-y',
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}

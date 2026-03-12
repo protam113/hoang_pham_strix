@@ -227,7 +227,7 @@ export default function TechSection() {
   return (
     <section
       id="tech-specs"
-      className="relative min-h-screen bg-white px-6 md:px-12 overflow-visible py-0 mb-0 pb-24"
+      className="relative min-h-screen bg-white px-6 md:px-12 overflow-visible pt-12 md:pt-16 mb-0 pb-24 z-20"
     >
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 md:mb-12">

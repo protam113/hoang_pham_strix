@@ -21,24 +21,24 @@ const ScrollToTopButton: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 flex flex-col items-center gap-3 z-50">
+    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 flex flex-col items-center gap-3 z-[9999] pointer-events-none">
       <a
         href="https://www.linkedin.com/in/hoangpham-strix/"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-12 h-12 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 flex items-center justify-center transition duration-300"
+        className="w-11 h-11 md:w-12 md:h-12 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 flex items-center justify-center transition duration-300 pointer-events-auto"
         aria-label="Linkedin"
       >
-        <FaLinkedin size={20} />
+        <FaLinkedin size={18} className="md:w-5 md:h-5" />
       </a>
 
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="w-12 h-12 bg-main text-white rounded-full shadow-md hover:bg-main-700 flex items-center justify-center transition duration-300"
+          className="w-11 h-11 md:w-12 md:h-12 bg-main text-white rounded-full shadow-lg hover:bg-main-700 flex items-center justify-center transition duration-300 pointer-events-auto"
           aria-label="Scroll to top"
         >
-          <ArrowUp size={20} />
+          <ArrowUp size={18} className="md:w-5 md:h-5" />
         </button>
       )}
     </div>

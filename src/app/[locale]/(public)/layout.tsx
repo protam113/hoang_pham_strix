@@ -11,8 +11,8 @@ export default function LayoutDefault({
 }>) {
   return (
     <>
-      <main className="bg-main">
-        <div>{children}</div>
+      <main className="bg-main relative min-h-screen">
+        <div className="relative">{children}</div>
         <ScrollToTopButton />
       </main>
     </>

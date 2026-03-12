@@ -34,7 +34,7 @@ export function Introduce() {
         />
       </div>
 
-      <Container className="w-full">
+      <Container className="w-full md:mt-4 lg:mt-2 mt-16 ">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16 w-full min-h-[500px]">
           <div className="lg:col-span-3 space-y-4 sm:space-y-6 lg:space-y-8">
             <div className="space-y-3 sm:space-y-2 sm:mt-[120px] mt-2">
