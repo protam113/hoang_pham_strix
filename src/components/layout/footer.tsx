@@ -1,4 +1,6 @@
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="bg-main text-gray-300 py-6">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
@@ -10,22 +12,34 @@ export default function Footer() {
 
         {/* Center */}
         <div className="text-sm text-gray-400 text-center mb-4 md:mb-0">
-          © 2025 Hoang Pham. All rights reserved.
+          © {currentYear} Hoang Pham. All rights reserved.
         </div>
 
         {/* Right side */}
         <div className="flex space-x-5">
-          <a href="#" className="hover:text-white" aria-label="LinkedIn">
+          <a
+            href="https://www.linkedin.com/in/hoangpham-strix/"
+            className="hover:text-white"
+            aria-label="LinkedIn"
+          >
             <i className="fab fa-linkedin"></i>
           </a>
-          <a href="#" className="hover:text-white" aria-label="GitHub">
+          <a
+            href="https://github.com/protam113"
+            className="hover:text-white"
+            aria-label="GitHub"
+          >
             <i className="fab fa-github"></i>
           </a>
-          <a href="#" className="hover:text-white" aria-label="Portfolio">
+          <a
+            href="https://www.vietstrix.com"
+            className="hover:text-white"
+            aria-label="Portfolio"
+          >
             <i className="fas fa-external-link-alt"></i>
           </a>
           <a
-            href="mailto:someone@example.com"
+            href="mailto:hoangpm2003.strix@gmail.com"
             className="hover:text-white"
             aria-label="Email"
           >
