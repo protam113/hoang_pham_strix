@@ -3,8 +3,7 @@
 import { cn } from '@/utils/utils';
 import React from 'react';
 
-export interface PushButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface PushButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
   label?: string;
   className?: string;
@@ -20,13 +19,12 @@ export const ContactButton: React.FC<PushButtonProps> = ({
       onClick(e);
     } else {
       window.open(
-        'https://drive.google.com/file/d/1QMf7nAuBjlBrLk2Gga-7OaS1R5Dy_PAs/view',
+        'https://drive.google.com/file/d/1cWvt36s9WPiCmenWBfz_M9etPMopd-TD/view?usp=sharing',
         '_blank',
         'noopener,noreferrer'
       );
     }
   };
-
   return (
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40">
       <button
