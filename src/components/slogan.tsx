@@ -1,56 +1,69 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { InteractiveClean } from './design/interactive-clean';
+import Image from 'next/image';
 
 export default function Slogan() {
   const t = useTranslations('Page');
 
+  const headingText = t('About.title') === 'Về Tôi' ? 'Châm ngôn' : 'Slogan';
+  const authorRole =
+    t('About.title') === 'Về Tôi'
+      ? 'Lập trình viên Fullstack'
+      : 'Fullstack Developer';
+
   return (
-    <section className="relative bg-main px-6 md:px-12 overflow-hidden pb-5">
-      <div className="max-w-[1920px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-screen">
-          <div className="flex flex-col justify-center items-start lg:items-end lg:pr-12 order-2 lg:order-1">
-            <div className="relative">
-              {/* Large decorative quote */}
-              <div
-                className="absolute -left-16 -top-20 lg:-left-24 lg:-top-32 text-white/80 opacity-30 text-[200px] lg:text-[280px] leading-none pointer-events-none select-none simteste"
-                style={{ fontFamily: 'var(--font-alex-brush), cursive' }}
-              >
-                &ldquo;
-              </div>
+    <section className="relative bg-white text-black py-20 sm:py-32 flex items-center justify-center overflow-hidden w-full border-t border-neutral-100">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start w-full">
+          {/* Left Column: Heading and Portrait */}
+          <div className="lg:col-span-5 space-y-8 sm:space-y-12 flex flex-col justify-start">
+            {/* Index & Title */}
+            <div className="space-y-2">
+              <span className="text-sm font-mono tracking-widest text-black/50 block">
+                04
+              </span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-black tracking-tight leading-none uppercase">
+                {headingText}
+              </h2>
+            </div>
 
-              {/* Main quote with improved spacing and hierarchy */}
-              <blockquote className="relative z-10 max-w-xl text-white">
-                <p className="text-4xl md:text-5xl lg:text-6xl font-black uppercase text-lorenzo-text-light leading-[1.1] tracking-tight mb-8">
-                  {t('Slogan')}
-                </p>
-              </blockquote>
-
-              {/* Author attribution */}
-              <div className="mt-4">
-                <p className="text-base font-medium font-mono md:text-lg text-accent">
-                  - Hoang Pham
-                </p>
-              </div>
+            {/* Portrait Image */}
+            <div className="relative w-full max-w-[340px] aspect-[3/4] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-xl border border-black/5">
+              <Image
+                src="/ava.jpeg"
+                alt="Hoang Pham"
+                fill
+                priority
+                className="object-cover hover:scale-[1.02] transition-transform duration-700"
+                sizes="(max-width: 768px) 100vw, 350px"
+              />
             </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="relative w-full aspect-4/5 md:aspect-square max-w-lg mx-auto lg:mx-0 order-1 lg:order-2"
-            style={{ touchAction: 'pan-y' }}
-          >
-            <div className="hidden md:block absolute -top-4 -left-4 w-16 h-16 border-t-4 border-l-4 border-white rounded-tl-3xl z-20" />
-            <div className="hidden md:block absolute -top-4 -right-4 w-16 h-16 border-t-4 border-r-4 border-white rounded-tr-3xl z-20" />
-            <div className="hidden md:block absolute -bottom-4 -left-4 w-16 h-16 border-b-4 border-l-4 border-white rounded-bl-3xl z-20" />
-            <div className="hidden md:block absolute -bottom-4 -right-4 w-16 h-16 border-b-4 border-r-4 border-white rounded-br-3xl z-20" />
-            <InteractiveClean />
-          </motion.div>
+          {/* Right Column: Quote and Author Info */}
+          <div className="lg:col-span-7 flex flex-col justify-center h-full pt-8 lg:pt-32 lg:pl-12">
+            {/* Large Quotes */}
+            <span className="text-6xl sm:text-7xl font-serif text-black/25 leading-none select-none mb-6 block">
+              &ldquo;
+            </span>
+
+            {/* Quote block */}
+            <blockquote className="space-y-8 max-w-2xl">
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-medium text-neutral-800 leading-snug tracking-tight">
+                {t('Slogan')}
+              </p>
+
+              <div className="border-t border-black/10 pt-6">
+                <cite className="not-italic text-lg font-bold text-black block">
+                  Pham Minh Hoang
+                </cite>
+                <span className="text-sm text-neutral-500 font-semibold tracking-wider uppercase">
+                  {authorRole}
+                </span>
+              </div>
+            </blockquote>
+          </div>
         </div>
       </div>
     </section>

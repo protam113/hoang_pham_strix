@@ -1,200 +1,300 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { useMobile } from '@/contexts/MobileContext';
-import { projects } from '@/types/data/project.data';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { Project, projects } from '@/types/data/project.data';
+import { useInView } from 'framer-motion';
+import gsap from 'gsap';
 import { ExternalLink } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function MasonryGallerySection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.1 });
   const t = useTranslations('Page');
-  const { isMobile } = useMobile();
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end end'],
-  });
+  // Group projects into pairs: [ [p1, p2], [p3, p4], ... ]
+  const projectPairs: [Project, Project?][] = [];
+  for (let i = 0; i < projects.length; i += 2) {
+    projectPairs.push([projects[i], projects[i + 1]]);
+  }
 
-  // Background transition: Dark Blue -> Light Blue -> White (delayed)
-  const backgroundColor = useTransform(
-    scrollYProgress,
-    [0, 0.7, 0.95],
-    ['#013162', '#6fc9ff', '#ffffff']
-  );
+  const isVietnamese = t('About.title') === 'Về Tôi';
+  const instructionText = isVietnamese
+    ? 'RÊ CHUỘT ĐỂ XEM VIDEO • PREVIEW WORK • '
+    : 'HOVER TO PLAY VIDEO • PREVIEW WORK • ';
 
-  // Y Movement: Desktop only
-  const y = useTransform(scrollYProgress, [0, 1], ['0vh', '-80vh']);
+  return (
+    <section className="relative min-h-screen bg-[#ffffff] text-black py-20 sm:py-32 flex flex-col items-center justify-start overflow-hidden w-full">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10 w-full">
+        {/* Title with Rotating Badge */}
+        <div className="flex flex-row justify-between items-end gap-6 mb-12 sm:mb-20 w-full">
+          <div className="space-y-2">
+            <span className="text-sm font-mono tracking-widest text-black/50 block">
+              01
+            </span>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-black tracking-tight leading-none uppercase">
+              {t('Featured.title')}
+            </h2>
+          </div>
 
-  // Mobile: 1 column, Desktop: 3 columns
-  const column1 = isMobile ? projects : projects.filter((_, i) => i % 3 === 0);
-  const column2 = isMobile ? [] : projects.filter((_, i) => i % 3 === 1);
-  const column3 = isMobile ? [] : projects.filter((_, i) => i % 3 === 2);
+          {/* Rotating Badge Helper */}
+          <div className="relative hidden md:flex items-center justify-center pointer-events-none select-none">
+            <div className="w-24 h-24 animate-[spin_12s_linear_infinite]">
+              <svg viewBox="0 0 100 100" className="w-full h-full">
+                <path
+                  id="circlePath"
+                  d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"
+                  fill="none"
+                />
+                <text className="text-[7px] font-mono fill-neutral-400 uppercase tracking-[0.16em] font-bold">
+                  <textPath href="#circlePath" startOffset="0%">
+                    {instructionText}
+                  </textPath>
+                </text>
+              </svg>
+            </div>
+            {/* Center icon */}
+            <div className="absolute w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-500">
+              <svg
+                className="w-4 h-4 animate-pulse"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
 
-  // Mobile: Simple static layout
-  if (isMobile) {
-    return (
-      <section
-        ref={sectionRef}
-        id="masonry-gallery"
-        className="relative z-10 bg-gradient-to-b from-[#013162] via-[#6fc9ff] to-white py-12 px-4"
-      >
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
-          className="mb-8"
-        >
-          <h2 className="text-lg uppercase tracking-wider text-white">
-            ({t('Featured.title')})
-          </h2>
-        </motion.div>
-
-        <div className="flex flex-col gap-4 w-full max-w-[600px] mx-auto">
-          {projects.map((project, index) => (
-            <MasonryCard
-              key={`mobile-${index}`}
-              index={index}
-              project={project}
-              isInView={isInView}
+        {/* Rows of 2 Projects */}
+        <div className="flex flex-col gap-8 sm:gap-12 lg:gap-16 w-full">
+          {projectPairs.map((pair, index) => (
+            <ProjectRow
+              key={index}
+              p1={pair[0]}
+              p2={pair[1]}
+              rowIndex={index}
             />
           ))}
         </div>
-      </section>
-    );
-  }
-
-  // Desktop: Scroll animation layout
-  return (
-    <section
-      ref={sectionRef}
-      id="masonry-gallery"
-      className="relative z-10"
-      style={{
-        height: '250vh',
-        touchAction: 'pan-y',
-      }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.6 }}
-        className="absolute top-8 left-4 md:left-8 z-10"
-      >
-        <h2 className="text-xl uppercase tracking-wider text-white">
-          ({t('Featured.title')})
-        </h2>
-      </motion.div>
-      <motion.div
-        className="sticky top-0 h-screen w-full overflow-hidden flex items-start justify-center"
-        style={{ backgroundColor }}
-      >
-        <motion.div
-          style={{ y }}
-          className="relative w-full max-w-[1400px] mx-auto px-8 pt-20 pb-40"
-        >
-          <div className="flex flex-row gap-8 w-full">
-            {/* Column 1 */}
-            <div className="flex flex-col gap-8 w-1/3">
-              {column1.map((project, index) => (
-                <MasonryCard
-                  key={`col1-${index}`}
-                  index={index * 3}
-                  project={project}
-                  isInView={isInView}
-                />
-              ))}
-            </div>
-
-            {/* Column 2 */}
-            <div className="flex flex-col gap-8 w-1/3">
-              {column2.map((project, index) => (
-                <MasonryCard
-                  key={`col2-${index}`}
-                  project={project}
-                  isInView={isInView}
-                  index={index * 3 + 1}
-                />
-              ))}
-            </div>
-
-            {/* Column 3 */}
-            <div className="flex flex-col gap-8 w-1/3">
-              {column3.map((project, index) => (
-                <MasonryCard
-                  key={`col3-${index}`}
-                  project={project}
-                  isInView={isInView}
-                  index={index * 3 + 2}
-                />
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
 
-function MasonryCard({
-  project,
-  index,
-  isInView,
+function ProjectRow({
+  p1,
+  p2,
+  rowIndex,
 }: {
-  project: any;
-  index: number;
-  isInView: boolean;
+  p1: Project;
+  p2?: Project;
+  rowIndex: number;
 }) {
+  const rowRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(rowRef, { once: true, amount: 'some' });
+
+  useEffect(() => {
+    if (isInView) {
+      const ctx = gsap.context(() => {
+        gsap.fromTo(
+          '.project-card-animate',
+          { opacity: 0, y: 50, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out',
+          }
+        );
+      }, rowRef);
+
+      return () => ctx.revert();
+    }
+  }, [isInView]);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.6,
-        delay: index * 0.08,
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
-      viewport={{ once: true, margin: '-20px', amount: 0.3 }}
-      className={`group relative overflow-hidden rounded-lg md:rounded-xl shadow-xl md:shadow-2xl transition-all duration-500 bg-gray-900/20 border-2 border-transparent w-full ${project.aspect || 'aspect-[4/3]'} hover:scale-[1.02] hover:shadow-3xl active:scale-[0.98]`}
+    <div
+      ref={rowRef}
+      className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 w-full"
     >
+      <div className="project-card-animate opacity-0">
+        <ProjectCard project={p1} index={rowIndex * 2} />
+      </div>
+      {p2 && (
+        <div className="project-card-animate opacity-0">
+          <ProjectCard project={p2} index={rowIndex * 2 + 1} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isHovering) {
+      video.play().catch((err) => {
+        console.log('Video play interrupted:', err);
+      });
+    } else {
+      video.pause();
+      video.currentTime = 0;
+    }
+  }, [isHovering]);
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (centerY - y) / 20;
+    const rotateY = (x - centerX) / 20;
+
+    gsap.to(card, {
+      rotateX: rotateX,
+      rotateY: rotateY,
+      transformPerspective: 1000,
+      scale: 1.015,
+      duration: 0.4,
+      ease: 'power2.out',
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    const card = cardRef.current;
+    if (!card) return;
+    gsap.to(card, {
+      rotateX: 0,
+      rotateY: 0,
+      scale: 1,
+      duration: 0.6,
+      ease: 'power2.out',
+    });
+  };
+
+  const formatNumber = (num: number) => {
+    return num < 9 ? `0${num + 1}` : `${num + 1}`;
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseEnter={handleMouseEnter}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
+      className="group relative w-full aspect-[16/10] overflow-hidden rounded-[24px] sm:rounded-[32px] shadow-lg border border-black/[0.03] bg-[#090a0c] cursor-pointer"
+    >
+      {/* Background Image */}
       <Image
         src={project.image || '/imgs/bgHome.webp'}
         alt={project.title}
         fill
-        className="object-cover transition-transform duration-700 group-hover:scale-110"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="object-cover transition-transform duration-700 group-hover:scale-105"
+        sizes="(max-width: 768px) 100vw, 600px"
         quality={90}
         loading="lazy"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-opacity duration-300" />
 
-      <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-between">
-        <div>
-          <p className="text-xs md:text-sm text-gray-300">{project.category}</p>
-          <h3 className="text-lg md:text-xl text-gray-200 font-bold mt-1">
+      {/* Hover Video Preview */}
+      {project.video && (
+        <video
+          ref={videoRef}
+          src={project.video}
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 z-0 pointer-events-none"
+          style={{ opacity: isHovering ? 1 : 0 }}
+        />
+      )}
+
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 transition-opacity duration-300 group-hover:from-black/90 group-hover:via-black/45" />
+
+      {/* Card Contents */}
+      <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-between select-none z-10">
+        {/* Top bar: Category & Number */}
+        <div className="flex justify-between items-start">
+          <div>
+            <span className="text-xs font-semibold text-neutral-300 tracking-wider uppercase">
+              {project.category}
+            </span>
+            {/* Tags preview */}
+            <div className="flex flex-wrap gap-1.5 mt-2">
+              {project.tag.slice(0, 3).map((t: string) => (
+                <span
+                  key={t}
+                  className="px-2 py-0.5 text-[9px] font-mono bg-white/10 border border-white/5 text-white/80 rounded-md"
+                >
+                  {t}
+                </span>
+              ))}
+              {project.tag.length > 3 && (
+                <span className="px-2 py-0.5 text-[9px] font-mono bg-white/15 text-white/90 rounded-md">
+                  +{project.tag.length - 3}
+                </span>
+              )}
+            </div>
+          </div>
+          <span className="text-2xl font-black text-white/20 font-mono tracking-tighter">
+            {formatNumber(index)}
+          </span>
+        </div>
+
+        {/* Bottom bar: Title & Action Button */}
+        <div className="space-y-4">
+          <h3 className="text-2xl sm:text-3xl text-white font-extrabold tracking-tight uppercase leading-none">
             {project.title}
           </h3>
-        </div>
 
-        {/* Button visible on mobile, hover on desktop */}
-        <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
-          <a href={project.href} target="_blank" rel="noopener noreferrer">
-            <Button
-              size="sm"
-              variant="outline"
-              className="w-full flex justify-center items-center gap-2 text-sm"
+          <div className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 pt-2">
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block w-full"
             >
-              View Project <ExternalLink className="h-3 w-3 md:h-4 md:w-4" />
-            </Button>
-          </a>
+              <Button
+                size="sm"
+                className="w-full sm:w-auto bg-white hover:bg-neutral-100 text-black border-none rounded-full px-6 py-5 font-bold flex justify-center items-center gap-2 text-sm shadow-md"
+              >
+                <span>VISIT WEBSITE</span>
+                <ExternalLink className="h-4 w-4" />
+              </Button>
+            </a>
+          </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

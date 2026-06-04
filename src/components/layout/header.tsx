@@ -1,200 +1,406 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { usePathname, useRouter } from '@/i18n/navigation';
+import { ScrollProgressBarProps } from '@/types/types.prob';
+import { MapPin } from 'lucide-react';
+import { useLocale } from 'next-intl';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
-export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+export default function NavBar({ sections }: ScrollProgressBarProps) {
   const [scrolled, setScrolled] = useState(false);
-  const [logoColor, setLogoColor] = useState<'white' | 'dark'>('dark');
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('main');
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const sectionsRef = useRef<Array<{ id: string; element: HTMLElement }>>([]);
+
+  const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLanguageSwitch = () => {
+    const nextLocale = locale === 'en' ? 'vi' : 'en';
+    router.replace(pathname, { locale: nextLocale });
+  };
+
+  useEffect(() => {
+    sectionsRef.current = sections
+      .map((section) => ({
+        id: section.id,
+        element: document.getElementById(section.id),
+      }))
+      .filter((item) => item.element !== null) as Array<{
+      id: string;
+      element: HTMLElement;
+    }>;
+  }, [sections]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScroll = window.scrollY;
-      setScrolled(currentScroll >= 300);
+      setScrolled(window.scrollY > 20);
 
-      let newColor: 'white' | 'dark' = 'dark';
+      const viewportHeight = window.innerHeight;
+      let highestVisibility = 0;
+      let currentActiveSection = activeSection;
 
-      if (currentScroll > 2) {
-        newColor = 'white';
-      }
+      sectionsRef.current.forEach(({ id, element }) => {
+        const rect = element.getBoundingClientRect();
+        const sectionHeight = rect.height || 1;
 
-      const headerOffset = 100; // Approximate header height
+        // Calculate visibility percentage
+        const visiblePx =
+          Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0);
+        const visiblePercent = Math.max(0, (visiblePx / sectionHeight) * 100);
 
-      const masonry = document.getElementById('masonry-gallery');
-      if (masonry) {
-        const rect = masonry.getBoundingClientRect();
-        if (rect.top <= headerOffset && rect.bottom > headerOffset) {
-          const progress = (headerOffset - rect.top) / rect.height;
-          if (progress > 0.65) {
-            newColor = 'dark';
-          }
+        if (visiblePercent > highestVisibility) {
+          highestVisibility = visiblePercent;
+          currentActiveSection = id;
         }
-      }
+      });
 
-      const helmets = document.getElementById('helmets');
-      if (helmets) {
-        const rect = helmets.getBoundingClientRect();
-        if (rect.top <= headerOffset && rect.bottom > headerOffset) {
-          newColor = 'white';
-        }
+      if (currentActiveSection && currentActiveSection !== activeSection) {
+        setActiveSection(currentActiveSection);
       }
-
-      const social = document.getElementById('social-section');
-      if (social) {
-        const rect = social.getBoundingClientRect();
-        if (rect.top <= headerOffset && rect.bottom > headerOffset) {
-          newColor = 'dark';
-        }
-      }
-
-      const techSpecs = document.getElementById('tech-specs');
-      if (techSpecs) {
-        const rect = techSpecs.getBoundingClientRect();
-        if (rect.top <= headerOffset && rect.bottom > headerOffset) {
-          newColor = 'dark';
-        }
-      }
-
-      setLogoColor(newColor);
     };
 
     handleScroll();
-
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [sections, activeSection]);
 
+  // Lock body scroll when drawer is open
   useEffect(() => {
-    if (menuOpen) {
+    if (mobileOpen) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
     }
-  }, [menuOpen]);
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
+
+  const handleSmoothScroll = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+      e.preventDefault();
+
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const navbarHeight = 80;
+        const elementPosition = element.offsetTop - navbarHeight;
+
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth',
+        });
+
+        setMobileOpen(false);
+      }
+    },
+    []
+  );
+
+  const itemSubtitles: Record<string, { en: string; vn: string }> = {
+    main: { vn: 'GIỚI THIỆU', en: 'INTRODUCE' },
+    about: { vn: 'VỀ TÔI', en: 'WHO AM I' },
+    experience: { vn: 'KINH NGHIỆM', en: 'EXPERIENCE' },
+    projects: { vn: 'SẢN PHẨM', en: 'PROJECTS' },
+    skills: { vn: 'NĂNG LỰC', en: 'SKILLS' },
+    apps: { vn: 'ỨNG DỤNG', en: 'APPS' },
+  };
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'backdrop-blur-md' : 'bg-transparent'
+      <header
+        id="main-header"
+        className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 ${
+          mobileOpen
+            ? 'bg-transparent'
+            : scrolled
+              ? 'bg-transparent'
+              : 'bg-transparent'
         }`}
       >
-        <div className="mx-auto px-6 md:px-12 flex items-center justify-between h-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="flex flex-col justify-center items-start mix-blend-difference"
-          >
-            <h1
-              className={`font-brier text-4xl leading-none mt-1 tracking-tight font-bold transition-colors duration-300 ${
-                logoColor === 'white' ? 'text-white' : 'text-main'
-              }`}
+        <div className="mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="flex items-center justify-between py-4">
+            {/* Logo */}
+            <a
+              href="#main"
+              onClick={(e) => handleSmoothScroll(e, 'main')}
+              className="flex items-center gap-3 sm:gap-4"
             >
-              HOANG PHAM
-            </h1>
-          </motion.div>
+              <div className="rounded-full flex items-center justify-center">
+                <Avatar className="w-14 h-14 sm:w-20 sm:h-20">
+                  <AvatarImage
+                    src="/ava.webp"
+                    alt="Profile"
+                    className="rounded-full"
+                    loading="eager"
+                  />
+                  <AvatarFallback className="text-6xl">HP</AvatarFallback>
+                </Avatar>
+              </div>
+              <div className="flex text-black flex-col font-black tracking-tight leading-[0.9]">
+                <span className="text-2xl sm:text-3xl font-extrabold uppercase">
+                  Hoang
+                </span>
+                <span className="text-2xl sm:text-3xl font-extrabold uppercase">
+                  Pham
+                </span>
+              </div>
+            </a>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex items-center gap-4 mix-blend-difference"
-          >
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="p-2 bg-main/80 border border-white/30 hover:bg-main rounded-lg transition-colors text-white px-3 py-2.5"
-              aria-label="Menu"
-            >
-              {menuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </motion.button>
-          </motion.div>
-        </div>
-      </motion.header>
+            {/* Middle location badge */}
+            <div className="hidden md:flex items-center gap-2.5 px-5 py-3 rounded-full border border-black/10 bg-white/40 backdrop-blur-md shadow-sm text-sm font-bold text-black uppercase tracking-widest">
+              <MapPin size={18} className="text-red-500 animate-bounce" />
+              <span>Based in Ho Chi Minh, VN 🇻🇳</span>
+            </div>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-main/95 backdrop-blur-xl z-40 flex items-center justify-center"
-            onClick={() => setMenuOpen(false)}
-          >
-            <motion.nav
-              initial="closed"
-              animate="open"
-              exit="closed"
-              variants={{
-                open: {
-                  transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-                },
-                closed: {
-                  transition: { staggerChildren: 0.05, staggerDirection: -1 },
-                },
-              }}
-              className="text-center"
-            >
-              <motion.ul className="space-y-6 text-4xl md:text-6xl font-black uppercase text-white">
-                {[
-                  'HOME',
-                  'MISSION',
-                  'GALLERY',
-                  'HELMETS',
-                  'STORE',
-                  'CONTACT',
-                ].map((item, index) => (
-                  <motion.li
-                    key={item}
-                    variants={{
-                      open: { opacity: 1, y: 0, rotate: 0 },
-                      closed: { opacity: 0, y: 20, rotate: -5 },
-                    }}
-                  >
-                    <a
-                      href={`#${item.toLowerCase()}`}
-                      className="inline-block hover:text-main transition-colors duration-300 hover:scale-110 transform"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {item}
-                    </a>
-                  </motion.li>
-                ))}
-              </motion.ul>
-
-              <motion.div
-                variants={{
-                  open: { opacity: 1, y: 0 },
-                  closed: { opacity: 0, y: 20 },
-                }}
-                className="mt-12 flex justify-center gap-6"
+            {/* Header controls (Language switch & Burger menu) */}
+            <div className="flex items-center gap-3 sm:gap-4 z-[1001]">
+              {/* Language Switch Button */}
+              <button
+                onClick={handleLanguageSwitch}
+                className={`w-[64px] h-[64px] sm:w-[68px] sm:h-[68px] rounded-full flex items-center justify-center font-mono font-bold text-sm tracking-wider transition-all duration-200 cursor-pointer border ${
+                  mobileOpen
+                    ? 'text-white bg-white/10 hover:bg-white/20 border-white/10'
+                    : scrolled
+                      ? 'text-main bg-gray-100 hover:bg-gray-200 border-black/5'
+                      : 'text-main bg-gray-100 hover:bg-gray-200 border-black/5'
+                }`}
+                aria-label="Chuyển đổi ngôn ngữ"
               >
-                {['INSTAGRAM', 'TIKTOK', 'YOUTUBE'].map((social) => (
-                  <motion.a
-                    key={social}
-                    whileHover={{ scale: 1.1, color: '#c8f550' }}
-                    href="#"
-                    className="text-sm font-bold text-white/60 hover:text-main transition-colors"
-                  >
-                    {social}
-                  </motion.a>
-                ))}
-              </motion.div>
-            </motion.nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                {locale.toUpperCase()}
+              </button>
+
+              {/* Burger Menu Button - Visible on all screen sizes */}
+              <button
+                id="mobile-menu-btn"
+                className={`w-[64px] h-[64px] sm:w-[68px] sm:h-[68px] rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer ${
+                  mobileOpen
+                    ? 'text-white bg-white/10 hover:bg-white/20'
+                    : scrolled
+                      ? 'text-main bg-gray-100 hover:bg-gray-200'
+                      : 'text-main bg-gray-100 hover:bg-gray-200'
+                }`}
+                aria-label="Mở menu"
+                onClick={() => {
+                  setMobileOpen(!mobileOpen);
+                }}
+              >
+                <svg
+                  width="34"
+                  height="34"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  {mobileOpen ? (
+                    <>
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </>
+                  ) : (
+                    <>
+                      <line x1="3" y1="12" x2="21" y2="12"></line>
+                      <line x1="3" y1="6" x2="21" y2="6"></line>
+                      <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </>
+                  )}
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Backdrop overlay */}
+      <div
+        className={`fixed inset-0 bg-black/70 backdrop-blur-sm z-[998] transition-opacity duration-500 ${
+          mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setMobileOpen(false)}
+      />
+
+      {/* LEFT PANEL - CONNECT (Slides from Left on Desktop) */}
+      <div
+        className={`fixed top-0 left-0 bottom-0 h-screen bg-[#0a0a0c] text-white z-[999] transition-transform duration-500 ease-in-out shadow-2xl flex flex-col justify-between pt-32 pb-12 px-8 sm:px-16 md:px-24 w-1/2 hidden md:flex ${
+          mobileOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="space-y-12">
+          <div className="space-y-2">
+            <span className="text-xs font-bold tracking-[0.3em] text-secondary-500 uppercase">
+              KẾT NỐI VỚI TÔI
+            </span>
+            <h3 className="text-3xl font-black uppercase tracking-tight text-white">
+              Hoang Pham
+            </h3>
+          </div>
+
+          <div className="space-y-6">
+            <div>
+              <span className="text-xs font-bold tracking-[0.2em] text-white/40 uppercase block mb-2">
+                ĐIỆN THOẠI HỖ TRỢ
+              </span>
+              <a
+                href="tel:+84377783437"
+                className="text-2xl font-bold text-white hover:text-secondary-400 transition-colors"
+              >
+                +84 377 783 437
+              </a>
+            </div>
+
+            <div>
+              <span className="text-xs font-bold tracking-[0.2em] text-white/40 uppercase block mb-2">
+                EMAIL LIÊN HỆ
+              </span>
+              <a
+                href="mailto:hoangpm2003.strix@gmail.com"
+                className="text-2xl font-bold text-white hover:text-secondary-400 transition-colors"
+              >
+                hoangpm2003.strix@gmail.com
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <span className="text-xs font-bold tracking-[0.2em] text-white/40 uppercase block">
+            MẠNG XÃ HỘI
+          </span>
+          <div className="flex flex-col space-y-3">
+            <a
+              href="https://www.facebook.com/vietstrix"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg font-bold text-white/60 hover:text-white transition-all flex items-center gap-2 group"
+            >
+              <span>Facebook</span>
+              <span className="text-xs text-white/30 group-hover:text-secondary-400 transition-colors">
+                @vietstrix
+              </span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/hoangpham-strix/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg font-bold text-white/60 hover:text-white transition-all flex items-center gap-2 group"
+            >
+              <span>LinkedIn</span>
+              <span className="text-xs text-white/30 group-hover:text-secondary-400 transition-colors">
+                @hoangpham-strix
+              </span>
+            </a>
+            <a
+              href="https://github.com/protam113"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg font-bold text-white/60 hover:text-white transition-all flex items-center gap-2 group"
+            >
+              <span>GitHub</span>
+              <span className="text-xs text-white/30 group-hover:text-secondary-400 transition-colors">
+                @protam113
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* RIGHT PANEL - MENU LINKS (Slides from Right) */}
+      <div
+        ref={drawerRef}
+        className={`fixed top-0 right-0 bottom-0 h-screen bg-[#111115] text-white z-[999] transition-transform duration-500 ease-in-out shadow-2xl flex flex-col justify-between pt-32 pb-12 px-8 sm:px-16 md:px-24 border-l border-white/5 ${
+          mobileOpen ? 'translate-x-0' : 'translate-x-full'
+        } w-full md:w-1/2`}
+      >
+        <div className="flex-1 overflow-y-auto space-y-8 scrollbar-none">
+          {sections.map((section) => {
+            const active = activeSection === section.id;
+            const subtitle = itemSubtitles[section.id] || {
+              vn: 'ĐI TỚI',
+              en: section.label.toUpperCase(),
+            };
+
+            return (
+              <div
+                key={section.id}
+                className="group border-b border-white/5 pb-6 last:border-none"
+              >
+                <div className="space-y-1">
+                  <span className="text-[10px] font-bold tracking-[0.25em] text-white/30 uppercase block">
+                    {subtitle.vn}
+                  </span>
+                  <div className="flex items-center justify-between">
+                    <a
+                      href={`#${section.id}`}
+                      className={`text-3xl sm:text-4xl md:text-5xl font-black tracking-tight transition-all hover:text-secondary-400 ${
+                        active ? 'text-secondary-400' : 'text-white'
+                      }`}
+                      onClick={(e) => handleSmoothScroll(e, section.id)}
+                    >
+                      {subtitle.en}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Footer info inside menu (Only visible on mobile screens) */}
+        <div className="md:hidden border-t border-white/5 pt-6 mt-6 space-y-4">
+          <div className="flex flex-row justify-between text-xs text-white/40">
+            <a
+              href="tel:+84377783437"
+              className="hover:text-white transition-colors font-bold"
+            >
+              +84 377 783 437
+            </a>
+            <a
+              href="mailto:hoangpm2003.strix@gmail.com"
+              className="hover:text-white transition-colors font-bold"
+            >
+              hoangpm2003.strix@gmail.com
+            </a>
+          </div>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://www.facebook.com/vietstrix"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-bold text-white/60 hover:text-white"
+            >
+              Facebook
+            </a>
+            <a
+              href="https://www.linkedin.com/in/hoangpham-strix/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-bold text-white/60 hover:text-white"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/protam113"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-bold text-white/60 hover:text-white"
+            >
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        {/* Desktop menu copyright footer */}
+        <div className="hidden md:flex justify-between items-center text-[10px] text-white/30 tracking-wider font-medium border-t border-white/5 pt-6 mt-6">
+          <span>hoangpm2003.strix@gmail.com</span>
+          <span>© {new Date().getFullYear()} Hoang Pham</span>
+        </div>
+      </div>
     </>
   );
 }

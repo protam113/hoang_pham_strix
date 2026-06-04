@@ -7,6 +7,22 @@
       "content1": "Lập trình viên full-stack với kinh nghiệm thực tế từ công việc tự do và các dự án cá nhân. Thành thạo Node.js, NestJS, React cùng các công nghệ hiện đại như Docker và Redis. Có kinh nghiệm xây dựng, triển khai và tối ưu các ứng dụng web với trọng tâm vào hiệu suất, khả năng mở rộng và trải nghiệm người dùng. Gần đây, mình làm việc với kiến trúc microservices kết hợp micro frontend và gRPC, từ đó nâng cao hiểu biết về thiết kế và vận hành hệ thống phân tán.",
       "content2": "Mình yêu thích việc chủ động tìm tòi và thử nghiệm các công nghệ mới, đặc biệt là ứng dụng AI vào quy trình phát triển phần mềm để tăng hiệu suất và tính sáng tạo, bao gồm các phương pháp lập trình như vibe coding. mình mong muốn được làm việc trong môi trường sáng tạo và hợp tác, nơi có thể đóng góp vào các sản phẩm có giá trị, chia sẻ kiến thức và giải quyết những bài toán phức tạp với tư duy lấy người dùng làm trung tâm. Trong dài hạn, mình hướng đến việc làm chủ các tính năng cốt lõi, đóng góp về mặt kỹ thuật và tham gia xây dựng những hệ thống phần mềm có tác động thực tiễn."
     },
+    "About": {
+      "title": "Về Tôi",
+      "heading": "Về Tôi",
+      "projectsCount": "Dự án hoàn thành",
+      "experienceYears": "Năm kinh nghiệm",
+      "clientsCount": "Khách hàng",
+      "bio": "Xin chào, mình là Phạm Minh Hoàng, một Lập trình viên Fullstack tại Thành phố Hồ Chí Minh. Với niềm đam mê xây dựng hệ thống backend mạnh mẽ và thiết kế giao diện frontend trực quan, mình tạo ra các ứng dụng web hiệu suất cao, mang lại trải nghiệm mượt mà và giải quyết các bài toán thực tế."
+    },
+    "Focus": {
+      "title": "Lĩnh vực",
+      "artDirection": "Art Direction",
+      "branding": "Branding",
+      "motionGraphics": "Motion Graphics",
+      "webDesign": "Thiết kế Web",
+      "backend": "Backend"
+    },
     "Experience": {
       "title1": "Kinh Nghiệm ",
       "title2": "Làm Việc",

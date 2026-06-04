@@ -7,6 +7,22 @@
       "content1": "Full-stack developer with hands-on experience from freelance work and personal projects. Proficient in Node.js, NestJS, React, and modern tooling such as Docker and Redis. Experienced in building and deploying real-world web applications with a strong focus on performance, scalability, and user experience. Recently worked with microservices combined with micro frontend architecture and gRPC, developing a solid foundation in distributed system design and operation.",
       "content2": "I enjoy actively exploring and applying new technologies in real projects, especially leveraging AI to enhance development workflows, improve logic design, and boost creativity, including approaches such as vibe coding. I am motivated to work in collaborative and creative environments where I can contribute to meaningful products, share knowledge, and tackle complex challenges with a user-centered mindset. In the long term, I aim to take ownership of core features, make strong technical contributions, and help shape impactful software systems."
     },
+    "About": {
+      "title": "About Me",
+      "heading": "About Me",
+      "projectsCount": "Projects Completed",
+      "experienceYears": "Years of Experience",
+      "clientsCount": "Happy Clients",
+      "bio": "Hey, I'm Pham Minh Hoang, a Fullstack Developer based in Ho Chi Minh City. With a passion for building robust backends and designing intuitive frontends, I create high-performance web applications that deliver seamless experiences and solve real-world problems."
+    },
+    "Focus": {
+      "title": "Focus",
+      "artDirection": "Art Direction",
+      "branding": "Branding",
+      "motionGraphics": "Motion Graphics",
+      "webDesign": "Web Design",
+      "backend": "Backend"
+    },
     "Experience": {
       "title1": "Work ",
       "title2": "Experience",

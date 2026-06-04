@@ -40,6 +40,7 @@ export type Project = {
   href: string;
   tag: Tag[];
   aspect: string;
+  video?: string;
 };
 
 export const projects: Project[] = [
@@ -47,6 +48,7 @@ export const projects: Project[] = [
     title: 'Hoi Dong Anh Em Duc Maria',
     category: 'Organization',
     image: '/imgs/hdh.webp',
+    video: '/vid/hdae.mp4',
     href: 'https://hoidonganhemducmaria.com/',
     tag: ['Nextjs', 'Docker', 'CI-CD', 'React'],
     aspect: 'aspect-[3/4]',
@@ -54,8 +56,9 @@ export const projects: Project[] = [
   {
     title: 'Vietstirx',
     category: 'Start Up',
-    image: '/imgs/vsv.webp',
-    href: 'https://hoang-pham-strix.vercel.app',
+    image: '/imgs/vsv.png',
+    video: '/vid/untitled.mp4',
+    href: 'https://vietstrix.com',
     tag: ['Nextjs', 'React', 'TailwindCSS', 'CI-CD', 'GitHub'],
     aspect: 'aspect-[4/3]',
   },
@@ -63,6 +66,7 @@ export const projects: Project[] = [
     title: 'Hust4l',
     category: 'Commerce site',
     image: '/imgs/husth.webp',
+    video: '/vid/hust.mp4',
     href: 'https://hust4l.vercel.app/',
     tag: [
       'Nextjs',
@@ -79,6 +83,7 @@ export const projects: Project[] = [
     title: 'UNIEN',
     category: 'Company blog',
     image: '/imgs/unu.webp',
+    video: '/vid/unien.mp4',
     href: 'https://unien.vercel.app/',
     tag: [
       'Nextjs',
@@ -95,10 +100,11 @@ export const projects: Project[] = [
     aspect: 'aspect-[4/3]',
   },
   {
-    title: 'VIA',
+    title: 'Com Lanh',
     category: 'Commerce site',
-    image: '/imgs/via.webp',
-    href: 'https://hoang-pham-strix.vercel.app',
+    image: '/imgs/gao.png',
+    video: '/vid/comlanh.mp4',
+    href: 'https://comlanh.vietstrix.com',
     tag: ['Nextjs', 'React', 'TailwindCSS', 'Docker', 'Zustand', 'React Query'],
     aspect: 'aspect-[3/4]',
   },
@@ -135,10 +141,11 @@ export const projects: Project[] = [
     aspect: 'aspect-[4/3]',
   },
   {
-    title: 'Vss App',
-    category: 'To do list',
-    image: '/imgs/vss.jpeg',
-    href: 'https://hoang-pham-strix.vercel.app',
+    title: 'Bui Media',
+    category: 'Agency Website',
+    image: '/imgs/bui.png',
+    video: '/vid/bui.mp4',
+    href: 'https://buimedia.vietstrix.com',
     tag: [
       'Nextjs',
       'React',

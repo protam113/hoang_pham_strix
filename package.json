@@ -18,6 +18,7 @@
     "date-fns": "^4.1.0",
     "eslint-plugin-prettier": "^5.4.0",
     "framer-motion": "^12.23.16",
+    "gsap": "^3.15.0",
     "lucide-react": "^0.544.0",
     "next": "^16.1.6",
     "next-intl": "^4.3.9",
